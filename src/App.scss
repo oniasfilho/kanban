@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap');
+
+@mixin headingXL {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+@mixin headingL {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+@mixin headingM {
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+@mixin headingS {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+	letter-spacing: 2.4px;
+}
+
+@mixin bodyL {
+  font-weight: medium;
+  font-size: 13px;
+  line-height: 23px;
+}
+
+@mixin bodyM {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+$dark-purple: #635FC7;
+$ligth-purple: #A8A4FF;
+$deep-purple: #000112;
+$grayish-purple: #20212C;
+
+$darker-gray: #2B2C37;
+$dark-gray: #3E3F4E;
+$mid-gray: #828FA3;
+$ligth-gray: #E4EBFA;
+
+$ligther-gray: #F4F7FD;
+$white: #FFFFFF;
+$deep-red: #EA5555;
+$ligth-red: #FF9898;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.navbar-wrapper {
+	display: grid;
+	justify-content: space-between;
+	grid-template-rows: auto;
+	grid-template-columns: auto auto;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: $grayish-purple;
+	color: $white;
+	height: 64px;
+	padding: 20px 16px;
+	@include headingL;
+}
+
+.navbar {
+
+}
+
+.navbar-left-section {
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 16px;
+}
+
+.navbar-right-section {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 16px;
+}
+
+.nav-dropdown-wrapper {
+	
+}
+
+.nav-dropdown-down-arrow {
+	margin-left: 6px;
+	transform: translateY(-50%);
+	
+}
+
+.add-button {
+	border: none;
+  margin: 0;
+  padding: 8px 16px;
+	transform: translateY(-15%);
+	border-radius: 10px;
+  background: $dark-purple;
+ }
