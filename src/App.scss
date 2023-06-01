@@ -1,46 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap');
 
 @mixin headingXL {
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 30px;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 30px;
 }
 
 @mixin headingL {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
+	font-weight: bold;
+	font-size: 18px;
+	line-height: 23px;
 }
 
 @mixin headingM {
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 19px;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 19px;
 }
 
 @mixin headingS {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px;
 	letter-spacing: 2.4px;
 }
 
 @mixin bodyL {
-  font-weight: medium;
-  font-size: 13px;
-  line-height: 23px;
+	font-weight: medium;
+	font-size: 13px;
+	line-height: 23px;
 }
 
 @mixin bodyM {
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 15px;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 15px;
 }
 
 $dark-purple: #635FC7;
 $ligth-purple: #A8A4FF;
 $deep-purple: #000112;
-$grayish-purple: #20212C;
+$dark-grayish-purple: #20212C;
 
 $darker-gray: #2B2C37;
 $dark-gray: #3E3F4E;
@@ -53,9 +53,9 @@ $deep-red: #EA5555;
 $ligth-red: #FF9898;
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 	font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
@@ -67,15 +67,11 @@ $ligth-red: #FF9898;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: $grayish-purple;
+	background-color: $darker-gray;
 	color: $white;
 	height: 64px;
 	padding: 20px 16px;
 	@include headingL;
-}
-
-.navbar {
-
 }
 
 .navbar-left-section {
@@ -90,21 +86,79 @@ $ligth-red: #FF9898;
 	gap: 16px;
 }
 
-.nav-dropdown-wrapper {
-	
-}
-
 .nav-dropdown-down-arrow {
 	margin-left: 6px;
 	transform: translateY(-50%);
-	
 }
 
 .add-button {
 	border: none;
-  margin: 0;
-  padding: 8px 16px;
+	margin: 0;
+	padding: 8px 16px;
 	transform: translateY(-15%);
 	border-radius: 10px;
-  background: $dark-purple;
- }
+	background: $dark-purple;
+	transition: background-color 0.3s ease;
+}
+
+.add-button .add-button-image {
+  opacity: 1;  
+  transition: opacity 0.3s ease;
+}
+
+.add-button:disabled {
+	background: $dark-purple;
+	opacity: 0.4;  
+	transition: background-color 0.3s ease;
+}
+
+.add-button:disabled .add-button-image {
+  opacity: 0.5;  
+}
+
+.home-wrapper {
+	display: grid;
+	height: calc(100vh - 64px);
+	background-color: $dark-grayish-purple;
+	margin-top: 64px;
+}
+
+.empty-board-message {
+	max-width: 293px;
+	color: $mid-gray;
+	@include headingL;
+}
+
+.empty-board-content {
+	display: grid;
+	grid-template-rows: auto auto;
+}
+
+.empty-board-message {
+	display: flex;
+	align-items: flex-end;
+	justify-self: center;
+	text-align: center;
+}
+
+.add-new-column-button-wrapper {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin-top: 25px;
+}
+
+.add-column-button-image {
+	margin-right: 5px;
+}
+
+.add-column-button {
+	border: none;
+	margin: 0;
+	padding: 12px 16px;
+	border-radius: 10px;
+	color: $white;
+	background: $dark-purple;
+}
+
+

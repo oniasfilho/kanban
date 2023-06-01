@@ -3,7 +3,7 @@ import React from 'react'
 const AddButton = () => {
 	return (
 		<div className='add-button-wrapper'>
-			<button className='add-button'>
+			<button disabled className='add-button'>
 				<img
 					className='add-button-image'
 					src={process.env.PUBLIC_URL + '/assets/icon-add-task-mobile.svg'}
