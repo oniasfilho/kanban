@@ -194,7 +194,27 @@ $ligth-red: #FF9898;
 .navbar-modal-content {
 	display: flex;
 	height: 196px;
+	overflow-y: scroll;
 	flex-direction: column;
+}
+
+.navbar-modal-content {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $darker-gray;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark-purple;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $mid-gray;
+  }
 }
 
 .navbar-modal-content img.navbar-board-icon {
@@ -221,7 +241,12 @@ $ligth-red: #FF9898;
 }
 
 .create-new-board {
-	color: $dark-purple
+	color: $dark-purple;
+	max-height: 50px;
+}
+
+.create-new-board img.navbar-board-icon{
+	margin-left: 24px;
 }
 
 .add-new-board-icon {

@@ -22,17 +22,18 @@ const NavbarDropdownModal = ({ toggleExpanded, boards }) => {
 							{each.name}
 						</div>
 					))}
-					<div className="navbar-modal-board-option create-new-board">
-						<img
-							className='navbar-board-icon new-board-icon'
-							src={process.env.PUBLIC_URL + '/assets/icon-board-dark-purple.svg'}
-							alt="Board Icon" />
-						<img
-							className='navbar-add-board-icon'
-							src={process.env.PUBLIC_URL + '/assets/icon-add-task-mobile-dark-purple.svg'}
-							alt="Add Icon" />
-						Create New Board
-					</div>
+
+				</div>
+				<div className="navbar-modal-board-option create-new-board">
+					<img
+						className='navbar-board-icon new-board-icon'
+						src={process.env.PUBLIC_URL + '/assets/icon-board-dark-purple.svg'}
+						alt="Board Icon" />
+					<img
+						className='navbar-add-board-icon'
+						src={process.env.PUBLIC_URL + '/assets/icon-add-task-mobile-dark-purple.svg'}
+						alt="Add Icon" />
+					Create New Board
 				</div>
 				<div className="navbar-modal-footer">
 					light/dark mode toggle
