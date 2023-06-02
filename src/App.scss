@@ -52,6 +52,8 @@ $white: #FFFFFF;
 $deep-red: #EA5555;
 $ligth-red: #FF9898;
 
+$navbar-border: 10px;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -182,6 +184,7 @@ $ligth-red: #FF9898;
 
 .navbar-modal {
 	@include bodyL;
+	border-radius: $navbar-border;
 	width: 264px;
 	height: 322px;
   background-color: $darker-gray;
@@ -293,6 +296,8 @@ $ligth-red: #FF9898;
 	background-color: $darker-gray;
 	// min-height: 300px;
 	height: 80px;
+	border-bottom-left-radius: $navbar-border;
+	border-bottom-right-radius: $navbar-border;
 
 }
 
