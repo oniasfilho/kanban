@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { switchToDarkTheme, switchToLightTheme } from '../features/theme/themeSlice';
 
 const NavbarDropdownModal = ({ toggleExpanded, boards }) => {
-	const [isToggled, setIsToggled] = useState(false);
+	const theme = useSelector(state => state.theme.theme);
+	const dispatch = useDispatch();
+	const [isToggled, setIsToggled] = useState(theme === "dark");
 
 	const handleClick = (e) => {
 		if (e.target.closest('.navbar-modal') === null) {
@@ -10,6 +14,11 @@ const NavbarDropdownModal = ({ toggleExpanded, boards }) => {
 	}
 
 	const handleToggle = () => {
+		if (!isToggled) {
+			dispatch(switchToDarkTheme());
+		} else {
+			dispatch(switchToLightTheme());
+		}
 		setIsToggled(!isToggled);
 	};
 
@@ -52,7 +61,6 @@ const NavbarDropdownModal = ({ toggleExpanded, boards }) => {
 							className='theme-toggle-icon'
 							src={process.env.PUBLIC_URL + '/assets/icon-dark-theme.svg'}
 							alt="light theme icon"
-
 						/>
 					</div>
 				</div>

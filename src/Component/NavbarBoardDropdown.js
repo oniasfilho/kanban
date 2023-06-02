@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NavbarDropdownModal from './NavbarDropdownModal';
-import { GENERAL_DATA } from '../Data/data';
+import { GENERAL_DATA } from '../data/data';
 
 const NavbarBoardDropdown = () => {
 	const [expanded, setExpanded] = useState(false);

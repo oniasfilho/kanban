@@ -1,6 +1,6 @@
 import React from 'react'
-import NavbarBoardDropdown from '../Component/NavbarBoardDropdown'
-import AddButton from '../Component/AddButton';
+import NavbarBoardDropdown from '../component/NavbarBoardDropdown'
+import AddButton from '../component/AddButton';
 const Navbar = () => {
 	return (
 		<div className='navbar-wrapper'>

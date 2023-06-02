@@ -37,18 +37,30 @@
 	line-height: 15px;
 }
 
-$dark-purple: #635FC7;
+// $secondary-color-light: #F4F7FD;
+// $background-color-light: #FFFFFF;
+// $text-color-light: black;
+
+// $secondary-color-dark: #20212C;
+// $background-color-dark: #2B2C37;
+// $text-color-light: white;
+
+:root {
+  --background-color: #2B2C37;
+  --text-color: white;
+  --secondary-color: #20212C;
+}
+
+// dark-theme related
+$primary-color-dark: #635FC7;
+$primary-text-color-dark: #FFFFFF;
+$text-color: #FFFFFF;
+$secondary-text-color-dark: #828FA3;
+
 $ligth-purple: #A8A4FF;
 $deep-purple: #000112;
-$dark-grayish-purple: #20212C;
-
-$darker-gray: #2B2C37;
 $dark-gray: #3E3F4E;
-$mid-gray: #828FA3;
 $ligth-gray: #E4EBFA;
-
-$ligther-gray: #F4F7FD;
-$white: #FFFFFF;
 $deep-red: #EA5555;
 $ligth-red: #FF9898;
 
@@ -69,8 +81,8 @@ $navbar-border: 10px;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background-color: $darker-gray;
-	color: $white;
+	background-color: var(--background-color);
+	color: $primary-text-color-dark;
 	height: 64px;
 	padding: 20px 16px;
 	@include headingL;
@@ -90,6 +102,7 @@ $navbar-border: 10px;
 
 .nav-dropdown-wrapper {
 	cursor: pointer;
+	color: var(--text-color);
 }
 
 .nav-dropdown-down-arrow {
@@ -105,7 +118,7 @@ $navbar-border: 10px;
 	padding: 8px 16px;
 	transform: translateY(-15%);
 	border-radius: 10px;
-	background: $dark-purple;
+	background: $primary-color-dark;
 	transition: background-color 0.3s ease;
 }
 
@@ -115,7 +128,7 @@ $navbar-border: 10px;
 }
 
 .add-button:disabled {
-	background: $dark-purple;
+	background: $primary-color-dark;
 	opacity: 0.4;  
 	transition: background-color 0.3s ease;
 }
@@ -127,13 +140,12 @@ $navbar-border: 10px;
 .home-wrapper {
 	display: grid;
 	height: calc(100vh - 64px);
-	background-color: $dark-grayish-purple;
+	background-color: var(--secondary-color);
 	margin-top: 64px;
 }
 
 .empty-board-message {
-	max-width: 293px;
-	color: $mid-gray;
+	color: $secondary-text-color-dark;
 	@include headingL;
 }
 
@@ -165,8 +177,8 @@ $navbar-border: 10px;
 	margin: 0;
 	padding: 12px 16px;
 	border-radius: 10px;
-	color: $white;
-	background: $dark-purple;
+	color: $primary-text-color-dark;
+	background: $primary-color-dark;
 	cursor: pointer;
 }
 
@@ -188,7 +200,7 @@ $navbar-border: 10px;
 	border-radius: $navbar-border;
 	width: 264px;
 	height: 322px;
-  background-color: $darker-gray;
+  background-color: var(--background-color);
 	display: grid;
 	grid-template-rows: 50px auto auto;
 }
@@ -198,6 +210,7 @@ $navbar-border: 10px;
 	text-transform: uppercase;
 	opacity: 0.6; 
 	padding: 18px 24px;
+	color: var(--text-color);
 }
 
 .navbar-modal-content {
@@ -213,16 +226,16 @@ $navbar-border: 10px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: $darker-gray;
+    background-color: var(--background-color);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $dark-purple;
+    background-color: $primary-color-dark;
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: $mid-gray;
+    background-color: $secondary-text-color-dark;
   }
 }
 
@@ -232,7 +245,7 @@ $navbar-border: 10px;
 
 .navbar-modal-board-option{
 	padding: 13px 0px;
-	color: $mid-gray;
+	color: $secondary-text-color-dark;
 	transition: margin-right 0.3s ease, border-radius 0.3s ease, color 0.3s ease, background 0.3s ease;
 	cursor: pointer;
 }
@@ -241,8 +254,8 @@ $navbar-border: 10px;
 	margin-right: 24px;
 	border-top-right-radius: 50px;
 	border-bottom-right-radius: 50px;
-	color:$white;
-	background: $dark-purple;
+	color:$primary-text-color-dark;
+	background: $primary-color-dark;
 }
 
 .navbar-board-icon {
@@ -251,7 +264,7 @@ $navbar-border: 10px;
 }
 
 .create-new-board {
-	color: $dark-purple;
+	color: $primary-color-dark;
 	max-height: 50px;
 }
 
@@ -269,7 +282,7 @@ $navbar-border: 10px;
 	display:flex;
 	align-items: center;
 	justify-content: center;
-	background-color: $darker-gray;
+	background-color: var(--background-color);
 	height: 80px;
 	border-bottom-left-radius: $navbar-border;
 	border-bottom-right-radius: $navbar-border;
@@ -280,7 +293,7 @@ $navbar-border: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	background-color: $dark-grayish-purple;
+	background-color: var(--secondary-color);
 	height: 48px;
 	min-width: 235px;
 	border-radius: 8px;
@@ -296,7 +309,7 @@ $navbar-border: 10px;
   width: 50px;
   height: 26px;
   border-radius: 13px;
-  background-color: $dark-purple;
+  background-color: $primary-color-dark;
   cursor: pointer;
   outline: none;
   border: none;
@@ -326,16 +339,16 @@ $navbar-border: 10px;
 		svg.navbar-board-icon {
 			margin-left: 24px;
 		}
-    color: $mid-gray;
+    color: $secondary-text-color-dark;
     &:hover {
-        color: $white;
+        color: $primary-text-color-dark;
     }
 }
 
 .create-new-board {
-    color: $mid-gray;
+    color: $secondary-text-color-dark;
 		
     &:hover {
-        color: $white;
+        color: $primary-text-color-dark;
     }
 }
