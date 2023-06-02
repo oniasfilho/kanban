@@ -167,6 +167,7 @@ $navbar-border: 10px;
 	border-radius: 10px;
 	color: $white;
 	background: $dark-purple;
+	cursor: pointer;
 }
 
 .navbar-modal-wrapper {
@@ -258,43 +259,17 @@ $navbar-border: 10px;
 	margin-left: 24px;
 }
 
-.navbar-modal-board-option:hover .navbar-board-icon {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(163deg) brightness(102%) contrast(100%);
-}
-
-.navbar-board-icon {
-	filter: invert(57%) sepia(35%) saturate(189%) hue-rotate(177deg) brightness(92%) contrast(87%);
-}
-
-// deixa add roxo sem o hover
-.add-new-board-icon {
-	max-height: 8px;
-	margin-right: 4px;
-	filter: invert(59%) sepia(95%) saturate(3990%) hue-rotate(219deg) brightness(80%) contrast(94%);
-}
-
-// deixa o board roxo sem o hover
-.new-board-icon {
-	filter: invert(59%) sepia(95%) saturate(3990%) hue-rotate(219deg) brightness(80%) contrast(94%);
-}
 
 .navbar-add-board-icon {
 	margin-right: 5px;
 }
 
-.create-new-board:hover + .navbar-modal-board-option .navbar-add-board-icon,
-.create-new-board:hover + .navbar-modal-board-option .new-board-icon,
-.navbar-modal-board-option:hover .navbar-add-board-icon,
-.navbar-modal-board-option:hover .new-board-icon {
-  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(163deg) brightness(102%) contrast(100%);
-}
 
 .navbar-modal-footer {
 	display:flex;
 	align-items: center;
 	justify-content: center;
 	background-color: $darker-gray;
-	// min-height: 300px;
 	height: 80px;
 	border-bottom-left-radius: $navbar-border;
 	border-bottom-right-radius: $navbar-border;
@@ -345,4 +320,22 @@ $navbar-border: 10px;
 
 .theme-toggle-button:focus {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-modal-board-option {
+		svg.navbar-board-icon {
+			margin-left: 24px;
+		}
+    color: $mid-gray;
+    &:hover {
+        color: $white;
+    }
+}
+
+.create-new-board {
+    color: $mid-gray;
+		
+    &:hover {
+        color: $white;
+    }
 }
