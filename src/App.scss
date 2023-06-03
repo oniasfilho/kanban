@@ -25,6 +25,12 @@
 	letter-spacing: 2.4px;
 }
 
+@mixin bodyXL {
+	font-weight: lighter;
+	font-size: 20px;
+	line-height: 23px;
+}
+
 @mixin bodyL {
 	font-weight: medium;
 	font-size: 13px;
@@ -49,6 +55,7 @@
   --background-color: #2B2C37;
   --text-color: white;
   --secondary-color: #20212C;
+	--navbar-border: rgba(148, 147, 147, 0.502);
 }
 
 // dark-theme related
@@ -64,6 +71,7 @@ $ligth-gray: #E4EBFA;
 $deep-red: #EA5555;
 $ligth-red: #FF9898;
 
+$navbar-height: 64px;
 $navbar-border: 10px;
 
 * {
@@ -83,7 +91,7 @@ $navbar-border: 10px;
 	width: 100%;
 	background-color: var(--background-color);
 	color: $primary-text-color-dark;
-	height: 64px;
+	height: $navbar-height;
 	padding: 20px 16px;
 	@include headingL;
 }
@@ -192,7 +200,7 @@ $navbar-border: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 998;
 }
 
 .navbar-modal {
@@ -351,4 +359,77 @@ $navbar-border: 10px;
     &:hover {
         color: $primary-text-color-dark;
     }
+}
+
+.logo-and-board-name-wrapper  {
+	display: none;
+}
+
+.navgar-toggle {
+	display: none;
+}
+
+// tablet layout
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .nav-dropdown-wrapper {
+		display: none;
+	}
+
+	.logo-and-board-name-wrapper {
+		color: var(--text-color);
+		display: grid;
+		grid-template-columns: auto 210px;
+		height: $navbar-height;
+		transform: translateY(-20px);
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		padding-right: 30px;
+		@include headingXL;
+	}
+
+	.board-name {
+		display: flex;
+		align-items: center;
+		border-left: var(--navbar-border) 0.5px solid;
+		padding-left: 30px;
+		@include bodyXL;
+	}
+
+	.header-item-l {
+		transform: translateY(-3%);
+	}
+
+	.board-name {
+		// border-left: 1px dotted white;
+	}
+
+	.lateral-menu-open {
+		position: absolute;
+		background-color: var(--background-color);
+		width: 300px;
+		height: 100vh;
+		top:0px;
+		z-index: 999;
+		transition: transform 0.2s ease;
+	}
+
+	.lateral-menu-closed {
+		position: absolute;
+		background-color: var(--background-color);
+		width: 50px;
+		height: 50px;
+		bottom:36px;
+		border-top-right-radius: $navbar-border;
+		border-bottom-right-radius: $navbar-border;
+		z-index: 999;
+		cursor: pointer;
+	}
+}
+
+// desktop layout
+@media only screen and (min-width: 1024px) {
+  
 }

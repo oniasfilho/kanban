@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Home = () => {
+	const [open, setOpen] = useState(false);
 	return (
 		<div className="home-wrapper">
 			<div className="empty-board-content">
+				{open
+					? <div className="lateral-menu-open" onClick={() => setOpen(false)}>
+
+					</div> :
+					<div className="lateral-menu-closed" onClick={() => setOpen(true)}>
+
+					</div>}
 				<div className="empty-board-message">
 					This board is empty. Create a new column to get started.
 				</div>
@@ -16,6 +24,7 @@ const Home = () => {
 					</button>
 				</div>
 			</div>
+
 		</div>
 	)
 }

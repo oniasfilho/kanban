@@ -15,10 +15,12 @@ function App() {
 			root.style.setProperty('--background-color', '#2B2C37');
 			root.style.setProperty('--text-color', 'white');
 			root.style.setProperty('--secondary-color', '#20212C');
+			root.style.setProperty('--navbar-border', 'rgba(228, 225, 225, 0.4)');
 		} else {
 			root.style.setProperty('--background-color', '#FFFFFF');
 			root.style.setProperty('--text-color', 'black');
 			root.style.setProperty('--secondary-color', '#F4F7FD');
+			root.style.setProperty('--navbar-border', 'rgba(148, 147, 147, 0.4)');
 		}
 	}, [theme])
 
