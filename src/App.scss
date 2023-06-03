@@ -73,6 +73,7 @@ $ligth-red: #FF9898;
 
 $navbar-height: 64px;
 $navbar-border: 10px;
+$navbar-closed-border: 25px;
 
 * {
 	margin: 0;
@@ -406,10 +407,6 @@ $navbar-border: 10px;
 		transform: translateY(-3%);
 	}
 
-	.board-name {
-		// border-left: 1px dotted white;
-	}
-
 	.lateral-menu {
 		display: block;
 	}
@@ -417,23 +414,62 @@ $navbar-border: 10px;
 	.lateral-menu-open {
 		position: absolute;
 		background-color: var(--background-color);
-		width: 300px;
+		width: 261px;
 		height: 100vh;
 		top:0px;
 		z-index: 999;
 		transition: transform 0.2s ease;
+		border-right: var(--navbar-border) 0.5px solid;
+		// opacity: 0.5;
 	}
 
 	.lateral-menu-closed {
 		position: absolute;
-		background-color: var(--background-color);
-		width: 50px;
-		height: 50px;
+		background-color: $primary-color-dark;
+		width: 56px;
+		height: 48px;
 		bottom:36px;
-		border-top-right-radius: $navbar-border;
-		border-bottom-right-radius: $navbar-border;
+		border-top-right-radius: $navbar-closed-border;
+		border-bottom-right-radius: $navbar-closed-border;
 		z-index: 999;
 		cursor: pointer;
+		display: flex;
+		align-items: center;
+	}
+
+	.lateral-menu-closed-image {
+		color:$primary-text-color-dark;
+		margin-left: 18px;
+	}
+	
+	.inner-lateral-menu-header {
+		padding:16px;
+		height: $navbar-height;
+		display: grid;
+		grid-template-columns: 30px auto;
+		gap: 16px;
+		img {
+		transform: translateY(15%);
+		}
+	}
+
+	.project-name-wrapper {
+		@include headingXL;
+		color: var(--text-color);
+		transform: translate(-3.3%, -2%);
+	}
+
+	.logo-and-board-name-wrapper {
+		display: none;
+	}
+
+	.board-name-side-bar-wrapper{
+		position: absolute;
+		width: 200px;
+		top: 19.5px;
+		left: 287px;
+		@include bodyXL;
+		color: var(--text-color);
 	}
 	
 }
