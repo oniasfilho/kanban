@@ -369,6 +369,10 @@ $navbar-border: 10px;
 	display: none;
 }
 
+.lateral-menu {
+	display: none;
+}
+
 // tablet layout
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .nav-dropdown-wrapper {
@@ -406,6 +410,10 @@ $navbar-border: 10px;
 		// border-left: 1px dotted white;
 	}
 
+	.lateral-menu {
+		display: block;
+	}
+	
 	.lateral-menu-open {
 		position: absolute;
 		background-color: var(--background-color);
@@ -427,6 +435,7 @@ $navbar-border: 10px;
 		z-index: 999;
 		cursor: pointer;
 	}
+	
 }
 
 // desktop layout

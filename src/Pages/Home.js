@@ -6,10 +6,10 @@ const Home = () => {
 		<div className="home-wrapper">
 			<div className="empty-board-content">
 				{open
-					? <div className="lateral-menu-open" onClick={() => setOpen(false)}>
+					? <div className="lateral-menu lateral-menu-open" onClick={() => setOpen(false)}>
 
 					</div> :
-					<div className="lateral-menu-closed" onClick={() => setOpen(true)}>
+					<div className="lateral-menu lateral-menu-closed" onClick={() => setOpen(true)}>
 
 					</div>}
 				<div className="empty-board-message">
