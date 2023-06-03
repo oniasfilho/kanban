@@ -4,8 +4,8 @@ const initialState = {
 	theme: localStorage.getItem('theme') || 'light',
 }
 
-const themeSlice = createSlice({
-	name: 'theme',
+const layoutSlice = createSlice({
+	name: 'layout',
 	initialState,
 	reducers: {
 		switchToDarkTheme: (state) => {
@@ -19,5 +19,5 @@ const themeSlice = createSlice({
 	},
 })
 
-export const { switchToDarkTheme, switchToLightTheme } = themeSlice.actions;
-export default themeSlice.reducer;
+export const { switchToDarkTheme, switchToLightTheme } = layoutSlice.actions;
+export default layoutSlice.reducer;

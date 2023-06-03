@@ -375,7 +375,7 @@ $navbar-closed-border: 25px;
 }
 
 // tablet layout
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (min-width: 768px) and (max-width: 2000px) {
   .nav-dropdown-wrapper {
 		display: none;
 	}
@@ -459,17 +459,20 @@ $navbar-closed-border: 25px;
 		transform: translate(-3.3%, -2%);
 	}
 
-	.logo-and-board-name-wrapper {
-		display: none;
-	}
+	// .logo-and-board-name-wrapper {
+	// 	display: none;
+	// }
 
 	.board-name-side-bar-wrapper{
 		position: absolute;
 		width: 200px;
+		height: calc($navbar-height - 19.5px);
 		top: 19.5px;
-		left: 287px;
+		left: 261px;
 		@include bodyXL;
 		color: var(--text-color);
+		background-color: var(--background-color);
+		padding-left: 26px;
 	}
 	
 }

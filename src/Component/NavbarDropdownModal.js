@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { switchToDarkTheme, switchToLightTheme } from '../features/theme/themeSlice';
+import { switchToDarkTheme, switchToLightTheme } from '../features/layout/layoutSlice';
 
 const NavbarDropdownModal = ({ toggleExpanded, boards }) => {
 	const theme = useSelector(state => state.theme.theme);
