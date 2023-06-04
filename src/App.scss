@@ -474,6 +474,55 @@ $navbar-closed-border: 25px;
 		background-color: var(--background-color);
 		padding-left: 26px;
 	}
+
+	.inner-lateral-menu-body {
+		// background-color: red;
+		height: calc(100vh - $navbar-height);
+	}
+
+	.custom-menu-options {
+		// background-color: red;
+		width: 99%;
+	}
+	
+	.custom-menu-options {
+		// background-color: red;
+		height: 90%;
+	}
+
+	.create-new-board {
+		color: $primary-color-dark;
+	}
+
+	.navbar-modal {
+		grid-template-rows: 50px auto 88px;
+	}
+
+	.hide-lateral-navbar-wrapper{
+		color: white;
+	}
+
+	.lateral-navbar-lower-section{
+		display: flex;
+		justify-content: flex-start;
+		padding-left: 31px;
+		gap: 26px;
+		cursor: pointer;
+	}
+
+	.hide-sidebar-text {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $secondary-text-color-dark;
+		transform: translateY(-1px);
+	}
+
+	.hide-sidebar-icon{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	
 }
 
