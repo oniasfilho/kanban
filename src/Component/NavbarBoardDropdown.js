@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import NavbarDropdownModal from './NavbarDropdownModal';
-import { GENERAL_DATA } from '../data/data';
+import { useSelector } from 'react-redux';
+
 
 const NavbarBoardDropdown = () => {
 	const [expanded, setExpanded] = useState(false);
-
+	const { boards } = useSelector(state => state.content)
 	const toggleExpanded = () => {
 
 		setExpanded(!expanded);
@@ -13,7 +14,7 @@ const NavbarBoardDropdown = () => {
 	return (
 		<>
 			<div className='nav-dropdown-wrapper' onClick={toggleExpanded}>
-				{GENERAL_DATA.boards[0].name}
+				{boards[0].name}
 				<img
 					className='nav-dropdown-down-arrow'
 					src={process.env.PUBLIC_URL + `/assets/icon-chevron-${expanded ? 'up' : 'down'}.svg`}
@@ -21,7 +22,7 @@ const NavbarBoardDropdown = () => {
 			</div>
 
 			{expanded && (
-				<NavbarDropdownModal toggleExpanded={toggleExpanded} boards={GENERAL_DATA.boards} />
+				<NavbarDropdownModal toggleExpanded={toggleExpanded} boards={boards} />
 			)}
 		</>
 	)

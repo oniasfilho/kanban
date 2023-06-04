@@ -43,14 +43,6 @@
 	line-height: 15px;
 }
 
-// $secondary-color-light: #F4F7FD;
-// $background-color-light: #FFFFFF;
-// $text-color-light: black;
-
-// $secondary-color-dark: #20212C;
-// $background-color-dark: #2B2C37;
-// $text-color-light: white;
-
 :root {
   --background-color: #2B2C37;
   --text-color: white;
@@ -454,6 +446,10 @@ $navbar-closed-border: 25px;
 		}
 	}
 
+	.navbar-modal-content {
+		height: 80%;
+	}
+
 	.project-name-wrapper {
 		@include headingXL;
 		color: var(--text-color);
@@ -477,6 +473,10 @@ $navbar-closed-border: 25px;
 	.inner-lateral-menu-body {
 		// background-color: red;
 		height: calc(100vh - $navbar-height);
+	}
+
+	.inner-lateral-menu-body *{
+		user-select: none;
 	}
 
 	.custom-menu-options {

@@ -1,8 +1,10 @@
 import React from 'react'
 import NavbarBoardDropdown from '../component/NavbarBoardDropdown'
 import AddButton from '../component/AddButton';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+	const { name } = useSelector(state => state.content.currentBoard)
 	return (
 		<div className='navbar-wrapper'>
 			<div className="navbar-left-section">
@@ -12,7 +14,7 @@ const Navbar = () => {
 						Kanban
 					</div>
 					<div className="board-name header-item-l">
-						Platform Launch
+						{name}
 					</div>
 				</div>
 				<NavbarBoardDropdown />
