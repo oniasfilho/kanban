@@ -58,10 +58,13 @@ $secondary-text-color-dark: #828FA3;
 
 $ligth-purple: #A8A4FF;
 $deep-purple: #000112;
-$dark-gray: #3E3F4E;
+$dark-gray: #979797;
+$task-card-background: #3e3f4e70;
 $ligth-gray: #E4EBFA;
 $deep-red: #EA5555;
 $ligth-red: #FF9898;
+$todo-color: #49C4E5;
+$doing-color: #8471F2;
 
 $navbar-height: 64px;
 $navbar-border: 10px;
@@ -367,6 +370,63 @@ $navbar-closed-border: 25px;
 	display: none;
 }
 
+.columns-wrapper {
+	// background-color: rgb(211, 122, 122);
+}
+
+.single-column {
+	color: var(--text-color);
+	height: calc(100vh - $navbar-height);
+	display: grid;
+	grid-template-rows: 63px auto;
+}
+	
+.column-header-wrapper {
+	// background-color: #A8A4FF;
+	text-transform: uppercase;
+	color: $secondary-text-color-dark;
+	display: flex; 
+	align-items: center;
+	gap: 12px;
+}
+
+.todo-circle {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: $todo-color;
+	margin-left: 16px;
+}
+
+.column-items {
+	display: flex;
+	flex-direction: column;
+	margin-left: 16px;
+	margin-right: 8px;
+	gap:20px
+}
+
+.column-item {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background-color: $task-card-background;
+	width: 280px;
+	height: 107px;
+	border-radius: 8px;
+	padding: 0px 16px;
+	gap: 14px;
+}
+
+.task-title {
+	@include headingM;
+}
+
+.subtasks-status {
+	@include bodyM;
+	color: $secondary-text-color-dark;
+}
+
 // tablet layout
 @media only screen and (min-width: 768px) and (max-width: 2000px) {
   .nav-dropdown-wrapper {
@@ -517,12 +577,11 @@ $navbar-closed-border: 25px;
 		transform: translateY(-1px);
 	}
 
-	.hide-sidebar-icon{
+	.hide-sidebar-icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	
 }
 
 // desktop layout

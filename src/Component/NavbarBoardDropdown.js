@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const NavbarBoardDropdown = () => {
 	const [expanded, setExpanded] = useState(false);
+	const { name } = useSelector(state => state.content.currentBoard)
 	const { boards } = useSelector(state => state.content)
 	const toggleExpanded = () => {
 
@@ -14,7 +15,7 @@ const NavbarBoardDropdown = () => {
 	return (
 		<>
 			<div className='nav-dropdown-wrapper' onClick={toggleExpanded}>
-				{boards[0].name}
+				{name}
 				<img
 					className='nav-dropdown-down-arrow'
 					src={process.env.PUBLIC_URL + `/assets/icon-chevron-${expanded ? 'up' : 'down'}.svg`}
