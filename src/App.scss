@@ -75,6 +75,7 @@ $navbar-closed-border: 25px;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Plus Jakarta Sans', sans-serif;
+	// height: fit-content;
 }
 
 .navbar-wrapper {
@@ -144,9 +145,10 @@ $navbar-closed-border: 25px;
 
 .home-wrapper {
 	display: grid;
-	height: calc(100vh - 64px);
 	background-color: var(--secondary-color);
 	margin-top: 64px;
+	max-height: min-content;
+	width: fit-content;
 }
 
 .empty-board-message {
@@ -372,11 +374,15 @@ $navbar-closed-border: 25px;
 
 .columns-wrapper {
 	// background-color: rgb(211, 122, 122);
+	display: grid;
+	// grid-auto-columns: auto;
+	grid-auto-flow: column;
+	// background-color: red;
 }
 
 .single-column {
 	color: var(--text-color);
-	height: calc(100vh - $navbar-height);
+	// height: calc(100vh - $navbar-height);
 	display: grid;
 	grid-template-rows: 63px auto;
 }
