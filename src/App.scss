@@ -482,7 +482,7 @@ $navbar-closed-border: 25px;
 	}
 	
 	.lateral-menu-open {
-		position: absolute;
+		position: fixed;
 		background-color: var(--background-color);
 		width: 261px;
 		height: 100vh;
