@@ -375,11 +375,12 @@ $navbar-closed-border: 25px;
 }
 
 .columns-wrapper {
-	// background-color: rgb(211, 122, 122);
 	display: grid;
-	// grid-auto-columns: auto;
 	grid-auto-flow: column;
-	// background-color: red;
+	overflow-y: auto;
+  min-height: calc(100vh - 64px);
+	justify-content: start;
+	min-width: 100vw;
 }
 
 .single-column {
@@ -440,10 +441,6 @@ $navbar-closed-border: 25px;
 
 .layout {
   overflow-x: hidden;
-}
-.columns-wrapper {
-  overflow-y: auto;
-  min-height: calc(100vh - 64px);
 }
 
 // tablet layout
