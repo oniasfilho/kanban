@@ -493,7 +493,7 @@ $navbar-closed-border: 25px;
 	}
 
 	.lateral-menu-closed {
-		position: absolute;
+		position: fixed;
 		background-color: $primary-color-dark;
 		width: 56px;
 		height: 48px;
@@ -580,6 +580,7 @@ $navbar-closed-border: 25px;
 	.lateral-navbar-lower-section{
 		display: flex;
 		justify-content: flex-start;
+		margin-top: 30px;
 		padding-left: 31px;
 		gap: 26px;
 		cursor: pointer;
