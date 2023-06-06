@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import Home from './pages/Home';
+import Home from "./pages/Home";
 import Layout from './component/Layout';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -16,11 +16,14 @@ function App() {
 			root.style.setProperty('--text-color', 'white');
 			root.style.setProperty('--secondary-color', '#20212C');
 			root.style.setProperty('--navbar-border', 'rgba(228, 225, 225, 0.4)');
+			root.style.setProperty('--task-card-background', '#9797972d');
+			root.style.setProperty('--box-shadow', '0px 4px 8px 0px rgba(51, 51, 51, 0.6)');
 		} else {
 			root.style.setProperty('--background-color', '#FFFFFF');
 			root.style.setProperty('--text-color', 'black');
 			root.style.setProperty('--secondary-color', '#F4F7FD');
 			root.style.setProperty('--navbar-border', 'rgba(148, 147, 147, 0.4)');
+			root.style.setProperty('--task-card-background', '#FFFFFF');
 		}
 	}, [theme])
 

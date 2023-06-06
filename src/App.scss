@@ -48,6 +48,8 @@
   --text-color: white;
   --secondary-color: #20212C;
 	--navbar-border: rgba(148, 147, 147, 0.502);
+	--task-card-background: #9797972d;
+	--box-shadow: 0px 4px 8px 0px rgba(151, 151, 151, 0.6);
 }
 
 // dark-theme related
@@ -385,6 +387,8 @@ $navbar-closed-border: 25px;
 	// height: calc(100vh - $navbar-height);
 	display: grid;
 	grid-template-rows: 63px auto;
+	min-width: 280px;
+	margin-right: 24px;
 }
 	
 .column-header-wrapper {
@@ -416,12 +420,13 @@ $navbar-closed-border: 25px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	background-color: $task-card-background;
+	background-color: var(--task-card-background);
 	width: 280px;
 	height: 107px;
 	border-radius: 8px;
 	padding: 0px 16px;
 	gap: 14px;
+	box-shadow: var(--box-shadow);
 }
 
 .task-title {
@@ -431,6 +436,14 @@ $navbar-closed-border: 25px;
 .subtasks-status {
 	@include bodyM;
 	color: $secondary-text-color-dark;
+}
+
+.layout {
+  overflow-x: hidden;
+}
+.columns-wrapper {
+  overflow-y: auto;
+  min-height: calc(100vh - 64px);
 }
 
 // tablet layout
