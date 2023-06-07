@@ -12,10 +12,19 @@ const contentSlice = createSlice({
 	reducers: {
 		select: (state, action) => {
 			state.currentBoard = state.boards.find(e => e.id === action.payload)
+		},
+		updateBoard: (state, action) => {
+			const updated = action.payload;
+			state.boards = state.boards.map(each => {
+				if (each.id === updated.id) {
+					return updated;
+				}
+				return each;
+			})
 		}
 	}
 })
 
-export const { select } = contentSlice.actions;
+export const { select, updateBoard } = contentSlice.actions;
 
 export default contentSlice.reducer;
