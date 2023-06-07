@@ -3,7 +3,7 @@ import { GENERAL_DATA } from '../../data/data';
 
 const initialState = {
 	boards: GENERAL_DATA.boards,
-	currentBoard: GENERAL_DATA.boards[1],
+	currentBoard: GENERAL_DATA.boards[0],
 }
 
 const contentSlice = createSlice({
