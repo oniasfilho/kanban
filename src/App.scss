@@ -153,6 +153,12 @@ $navbar-closed-border: 25px;
 	width: fit-content;
 }
 
+.empty-board-wrapper {
+	display: grid;
+	min-width: 100vw;
+	height: calc(100vh - 64px);
+}
+
 .empty-board-message {
 	color: $secondary-text-color-dark;
 	@include headingL;

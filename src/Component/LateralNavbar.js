@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const LateralNavbar = () => {
 	const [open, setOpen] = useState(false);
-	const { name } = useSelector(state => state.content.currentBoard);
+	const name = useSelector(state => state.content?.currentBoard?.name)
 	const lateralMenuRef = useRef(null);
 
 	useEffect(() => {

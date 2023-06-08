@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { useGetBoardsQuery } from '../features/api/apiSlice'
 
 const Navbar = () => {
-	const { name } = useSelector(state => state.content.currentBoard)
+	const name = useSelector(state => state.content.currentBoard?.name)
 
 	const {
 		data,

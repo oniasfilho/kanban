@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable as Droppable } from '../helpers/StrictModeDroppable';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateBoard } from '../features/content/contentSlice';
+import { useSelector } from 'react-redux';
+// import { updateBoard } from '../features/content/contentSlice';
 
 const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
 	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	useEffect(() => {
-		setLocalColumns(currentBoard.columns)
+		setLocalColumns(currentBoard?.columns)
 	}, [currentBoard])
 
 	const handleDragEnd = (result) => {
 		const { source, destination } = result;
+
 
 		if (!destination) return;
 
@@ -26,34 +27,34 @@ const Columns = () => {
 			return;
 		}
 
-		const updatedColumns = JSON.parse(JSON.stringify(localColumns));
+		const updatedColumns = structuredClone(localColumns);
 
 		const sourceColumnIndex = updatedColumns.findIndex(
-			(column) => column.id === source.droppableId
+			(column) => column.columnId === source.droppableId
 		);
 		const sourceColumn = updatedColumns[sourceColumnIndex];
 		const [removedTask] = sourceColumn.tasks.splice(source.index, 1);
 
 		const destinationColumnIndex = updatedColumns.findIndex(
-			(column) => column.id === destination.droppableId
+			(column) => column.columnId === destination.droppableId
 		);
+
 		const destinationColumn = updatedColumns[destinationColumnIndex];
 		destinationColumn.tasks.splice(destination.index, 0, removedTask);
 
 		setLocalColumns(updatedColumns);
-		dispatch(updateBoard(updatedColumns));
 	};
 
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className="columns-wrapper">
 				{localColumns.map((column) => (
-					<div className="single-column" key={column.id}>
+					<div className="single-column" key={column.columnId}>
 						<div className="column-header-wrapper">
 							<div className="todo-circle" />
 							{column.name} ({column.tasks.length})
 						</div>
-						<Droppable droppableId={column.id}>
+						<Droppable droppableId={column.columnId}>
 							{(provided) => (
 								<div
 									className="column-items"
@@ -61,7 +62,7 @@ const Columns = () => {
 									{...provided.droppableProps}
 								>
 									{column.tasks.map((each, index) => (
-										<Draggable key={each.id} draggableId={each.id} index={index}>
+										<Draggable key={each.taskId} draggableId={each.taskId} index={index}>
 											{(provided) => (
 												<div
 													className="column-item"

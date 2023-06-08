@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmptyBoard = () => {
 	return (
-		<>
+		<div className='empty-board-wrapper'>
 			<div className="empty-board-message">
 				This board is empty. Create a new column to get started.
 			</div>
@@ -14,7 +14,7 @@ const EmptyBoard = () => {
 					Add New Column
 				</button>
 			</div>
-		</>
+		</div>
 	)
 }
 

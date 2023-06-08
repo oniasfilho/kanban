@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { apiSlice } from '../api/apiSlice';
-import { GENERAL_DATA } from '../../data/data';
 
 const initialState = {
-	boards: GENERAL_DATA.boards,
-	currentBoard: GENERAL_DATA.boards[0],
-	isLoading: false,
-	error: null,
+	boards: null,
+	currentBoard: null,
+	status: "idle"
 }
 
 const contentSlice = createSlice({
@@ -14,26 +11,14 @@ const contentSlice = createSlice({
 	initialState,
 	reducers: {
 		select: (state, action) => {
-			state.currentBoard = state.boards.find(e => e.id === action.payload)
+			state.currentBoard = action.payload
 		},
-		updateBoard: (state, action) => {
-			const updated = action.payload;
-			state.boards = state.boards.map(each => {
-				if (each.id === updated.id) {
-					return updated;
-				}
-				return each;
-			})
-		}
-	},
-	extraReducers: (builder) => {
-		builder.addCase(apiSlice.endpoints.getBoards, (state) => {
-			state.isLoading = true;
-			state.error = null;
-		});
+		setBoards: (state, action) => {
+			state.boards = action.payload
+		},
 	}
 })
 
-export const { select, updateBoard } = contentSlice.actions;
+export const { select, setBoards } = contentSlice.actions;
 
 export default contentSlice.reducer;
