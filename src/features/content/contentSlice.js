@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { apiSlice } from '../api/apiSlice';
 import { GENERAL_DATA } from '../../data/data';
 
 const initialState = {
 	boards: GENERAL_DATA.boards,
 	currentBoard: GENERAL_DATA.boards[0],
+	isLoading: false,
+	error: null,
 }
 
 const contentSlice = createSlice({
@@ -22,6 +25,12 @@ const contentSlice = createSlice({
 				return each;
 			})
 		}
+	},
+	extraReducers: (builder) => {
+		builder.addCase(apiSlice.endpoints.getBoards, (state) => {
+			state.isLoading = true;
+			state.error = null;
+		});
 	}
 })
 
