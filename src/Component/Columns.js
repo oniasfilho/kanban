@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable as Droppable } from '../helpers/StrictModeDroppable';
 import { useSelector } from 'react-redux';
-// import { updateBoard } from '../features/content/contentSlice';
+import { useUpdateBoardMutation } from '../features/api/apiSlice';
 
 const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
 	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
-
-	// const dispatch = useDispatch();
+	const [updateBoard] = useUpdateBoardMutation();
 
 	useEffect(() => {
 		setLocalColumns(currentBoard?.columns)
@@ -16,17 +15,13 @@ const Columns = () => {
 
 	const handleDragEnd = (result) => {
 		const { source, destination } = result;
-
-
 		if (!destination) return;
-
 		if (
 			source.droppableId === destination.droppableId &&
 			source.index === destination.index
 		) {
 			return;
 		}
-
 		const updatedColumns = structuredClone(localColumns);
 
 		const sourceColumnIndex = updatedColumns.findIndex(
@@ -43,6 +38,9 @@ const Columns = () => {
 		destinationColumn.tasks.splice(destination.index, 0, removedTask);
 
 		setLocalColumns(updatedColumns);
+		let updatedCurrentBoard = structuredClone(currentBoard);
+		updatedCurrentBoard.columns = updatedColumns;
+		updateBoard(updatedCurrentBoard)
 	};
 
 	return (

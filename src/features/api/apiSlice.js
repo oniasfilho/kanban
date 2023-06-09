@@ -6,10 +6,20 @@ export const apiSlice = createApi({
 	endpoints: (builder) => ({
 		getBoards: builder.query({
 			query: () => '/board',
+			providesTags: ['Boards']
+		}),
+		updateBoard: builder.mutation({
+			query: (board) => ({
+				url: '/board',
+				method: 'PUT',
+				body: board
+			}),
+			invalidatesTags: ['Boards']
 		})
 	})
 })
 
 export const {
-	useGetBoardsQuery
+	useGetBoardsQuery,
+	useUpdateBoardMutation
 } = apiSlice;
