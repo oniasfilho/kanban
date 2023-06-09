@@ -243,12 +243,12 @@ $navbar-closed-border: 25px;
 	margin-top: 35px;
 	@include bodyM;
 	color: $secondary-text-color-dark;
+	margin-bottom: 33px;
 }
 
 .subtasks-header {
 	@include bodyL;
 	color: var(--text-color);
-	margin-top: 33px;
 	margin-bottom: 19px;
 }
 
@@ -299,6 +299,20 @@ $navbar-closed-border: 25px;
   font-size: inherit;
   cursor: pointer;
 }
+
+.current-status-dropdown:active,
+.current-status-dropdown:focus-visible,
+.current-status-dropdown:focus,
+.current-status-dropdown:hover {
+	background-color: var(--secondary-color);
+  border: solid 0.5px $ligth-purple;
+	max-width: 100%;
+}
+
+input {
+	outline: none;
+}
+
 
 .current-status-arrow {
 	position: relative;

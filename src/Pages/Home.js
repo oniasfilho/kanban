@@ -11,8 +11,8 @@ const Home = () => {
 	const dispatch = useDispatch()
 	const {
 		data,
-		// isLoading,
-		// isError,
+		isLoading,
+		isError,
 		// error
 	} = useGetBoardsQuery()
 
@@ -20,8 +20,13 @@ const Home = () => {
 		if (currentBoard === null && data !== undefined && data !== null) {
 			dispatch(select(data[0]))
 			dispatch(setBoards(data))
+		} else {
+			if (!isLoading && !isError && data) {
+				dispatch(select(data[0]));
+				dispatch(setBoards(data));
+			}
 		}
-	}, [data, currentBoard, dispatch])
+	}, [data, currentBoard, dispatch, isError, isLoading])
 
 	return (
 		<div className="home-wrapper">

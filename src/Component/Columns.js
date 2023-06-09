@@ -10,7 +10,6 @@ const Columns = () => {
 	const [modalExpanded, setModalExpanded] = useState(false);
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const [updateBoard] = useUpdateBoardMutation();
-	const testBoard = useSelector(state => state.content.currentBoard);
 	const [testTask, setTestTask] = useState(null);
 
 	useEffect(() => {
@@ -119,7 +118,31 @@ const Columns = () => {
 									{testTask.subtasks.map(subtask => (
 										<div key={subtask.subTaskId} className="subtask-item">
 											<div className="checkbox-wrapper">
-												<input type='checkbox' checked={subtask.isCompleted} />
+												<input
+													type="checkbox"
+													checked={subtask.isCompleted}
+													onChange={() => {
+														const updatedTask = {
+															...testTask,
+															subtasks: testTask.subtasks.map((prevSubtask) =>
+																prevSubtask.subTaskId === subtask.subTaskId
+																	? { ...prevSubtask, isCompleted: !prevSubtask.isCompleted }
+																	: prevSubtask
+															),
+														};
+														setTestTask(updatedTask);
+
+														let updatedCurrentBoard = structuredClone(currentBoard);
+														updatedCurrentBoard.columns.forEach(column => {
+															column.tasks.forEach(task => {
+																if (task.taskId === testTask.taskId) {
+																	task.subtasks = updatedTask.subtasks;
+																}
+															})
+														})
+														updateBoard(updatedCurrentBoard);
+													}}
+												/>
 											</div>
 											<p className={`subtask ${subtask.isCompleted && 'checked'}`}>
 												{subtask.title}
@@ -135,11 +158,16 @@ const Columns = () => {
 										<div className="current-status-dropdown-container">
 											<select
 												className="current-status-dropdown"
-												open={isDropdownExpanded}
-												onClick={() => setIsDropdownExpanded(!isDropdownExpanded)}
+												onFocus={() => setIsDropdownExpanded(true)}
+												onBlur={() => setIsDropdownExpanded(false)}
+												onChange={(e) => {
+													setIsDropdownExpanded(oldVal => !oldVal)
+													e.target.blur()
+												}}
 											>
 												{currentBoard.columns.map(column => (
-													<option value={column.columnId}>{column.name}</option>
+													<option
+														key={column.columnId} value={column.columnId}>{column.name}</option>
 												))}
 											</select>
 											<div className={`current-status-arrow`}>
