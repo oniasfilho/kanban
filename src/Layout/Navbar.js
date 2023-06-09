@@ -1,18 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import NavbarBoardDropdown from '../component/NavbarBoardDropdown'
 import AddButton from '../component/AddButton'
 import { useSelector } from 'react-redux'
-import { useGetBoardsQuery } from '../features/api/apiSlice'
 
 const Navbar = () => {
 	const name = useSelector(state => state.content.currentBoard?.name)
-
-	const {
-		data,
-		isLoading,
-		isError,
-		error
-	} = useGetBoardsQuery()
 
 	return (
 		<div className='navbar-wrapper'>

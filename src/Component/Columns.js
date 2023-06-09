@@ -7,7 +7,11 @@ import { useUpdateBoardMutation } from '../features/api/apiSlice';
 const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
 	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
+	const [modalExpanded, setModalExpanded] = useState(false);
+	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const [updateBoard] = useUpdateBoardMutation();
+	const testBoard = useSelector(state => state.content.currentBoard);
+	const [testTask, setTestTask] = useState(null);
 
 	useEffect(() => {
 		setLocalColumns(currentBoard?.columns)
@@ -43,6 +47,12 @@ const Columns = () => {
 		updateBoard(updatedCurrentBoard)
 	};
 
+	const handleClick = (e) => {
+		if (e.target.closest('.generic-modal') === null) {
+			setModalExpanded(!modalExpanded);
+		}
+	}
+
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className="columns-wrapper">
@@ -67,6 +77,10 @@ const Columns = () => {
 													ref={provided.innerRef}
 													{...provided.draggableProps}
 													{...provided.dragHandleProps}
+													onClick={() => {
+														setTestTask(each)
+														setModalExpanded(!modalExpanded)
+													}}
 												>
 													<p className="task-title">{each.title}</p>
 													<p className="subtasks-status">
@@ -87,6 +101,63 @@ const Columns = () => {
 						</Droppable>
 					</div>
 				))}
+				{!modalExpanded && testTask != null &&
+					<div className='generic-modal-wrapper' onClick={handleClick}>
+						<div className='generic-modal'>
+							<div className="task-view-title">
+								{testTask.title}
+							</div>
+							{testTask.description !== "" && testTask.description !== null &&
+								<div className="task-view-description">
+									{testTask.description}
+								</div>}
+							<div className="task-view-subtasks">
+								<div className="subtasks-header">
+									{`Subtasks (${testTask.subtasks.reduce((count, subtasks) => count + (subtasks.isCompleted ? 1 : 0), 0)} of ${testTask.subtasks.length})`}
+								</div>
+								<div className="subtasks-items-wrapper">
+									{testTask.subtasks.map(subtask => (
+										<div key={subtask.subTaskId} className="subtask-item">
+											<div className="checkbox-wrapper">
+												<input type='checkbox' checked={subtask.isCompleted} />
+											</div>
+											<p className={`subtask ${subtask.isCompleted && 'checked'}`}>
+												{subtask.title}
+											</p>
+										</div>
+									))}
+								</div>
+								<div className="current-status-wrapper">
+									<div className="current-status-title">
+										Current Status
+									</div>
+									<div className="current-status-dropdown-wrapper">
+										<div className="current-status-dropdown-container">
+											<select
+												className="current-status-dropdown"
+												open={isDropdownExpanded}
+												onClick={() => setIsDropdownExpanded(!isDropdownExpanded)}
+											>
+												{currentBoard.columns.map(column => (
+													<option value={column.columnId}>{column.name}</option>
+												))}
+											</select>
+											<div className={`current-status-arrow`}>
+												{isDropdownExpanded
+													? <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+														<path stroke="#635FC7" strokeWidth="2" fill="none" d="M9 6 5 2 1 6" />
+													</svg>
+													: <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+														<path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4" />
+													</svg>
+												}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>}
 			</div>
 		</DragDropContext>
 	);

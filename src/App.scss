@@ -210,6 +210,120 @@ $navbar-closed-border: 25px;
   z-index: 998;
 }
 
+.generic-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+}
+
+.generic-modal {
+	@include bodyL;
+	border-radius: $navbar-border;
+	width: 343px;
+	padding: 30px 24px;
+	height: fit-content;
+  background-color: var(--background-color);
+	display: grid;
+	grid-template-rows: 50px auto auto;
+}
+
+.task-view-title {
+	@include headingM;
+	color: var(--text-color);
+}
+
+.task-view-description {
+	margin-top: 35px;
+	@include bodyM;
+	color: $secondary-text-color-dark;
+}
+
+.subtasks-header {
+	@include bodyL;
+	color: var(--text-color);
+	margin-top: 33px;
+	margin-bottom: 19px;
+}
+
+.subtasks-items-wrapper {
+	display: grid;
+	gap: 8px;
+}
+
+.subtask-item {
+	display:grid;
+	grid-template-columns: 44px auto;
+	padding: 16px 5px;
+	background-color: var(--secondary-color);
+	border-radius: $navbar-border;
+	color: var(--text-color);
+}
+
+.subtask.checked {
+	color: $secondary-text-color-dark;
+	text-decoration: line-through;
+}
+
+.checkbox-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.current-status-title {
+	@include bodyL;
+	color: var(--text-color);
+	margin-top: 18px;
+	margin-bottom: 11px;
+}
+
+.current-status-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: solid 0.5px $secondary-text-color-dark;
+	height: 40px;
+	width: 100%;
+	color: var(--text-color);
+	padding-left: 17px;
+  margin: 0 auto;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.current-status-arrow {
+	position: relative;
+	right: 0px;
+}
+
+.upside-down {
+  transform: rotate(180deg);
+}
+
+.current-status-dropdown-container {
+  position: relative;
+}
+
+.current-status-arrow {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+}
+
+.current-status-arrow.upside-down {
+  transform: translateY(-50%) rotate(180deg);
+}
+
 .navbar-modal {
 	@include bodyL;
 	border-radius: $navbar-border;
