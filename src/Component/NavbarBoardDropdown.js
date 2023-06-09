@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 
 const NavbarBoardDropdown = () => {
 	const [expanded, setExpanded] = useState(false);
-	const { name } = useSelector(state => state.content.currentBoard)
-	const { boards } = useSelector(state => state.content)
-	const toggleExpanded = () => {
+	const name = useSelector(state => state.content.currentBoard?.name)
 
+	const boards = useSelector(state => state.content.boards)
+	const toggleExpanded = () => {
 		setExpanded(!expanded);
 	}
 

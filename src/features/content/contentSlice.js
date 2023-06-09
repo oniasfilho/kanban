@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { GENERAL_DATA } from '../../data/data';
 
 const initialState = {
-	boards: GENERAL_DATA.boards,
-	currentBoard: GENERAL_DATA.boards[1],
+	boards: null,
+	currentBoard: null,
+	status: "idle"
 }
 
 const contentSlice = createSlice({
@@ -11,11 +11,14 @@ const contentSlice = createSlice({
 	initialState,
 	reducers: {
 		select: (state, action) => {
-			state.currentBoard = state.boards.find(e => e.id === action.payload)
-		}
+			state.currentBoard = action.payload
+		},
+		setBoards: (state, action) => {
+			state.boards = action.payload
+		},
 	}
 })
 
-export const { select } = contentSlice.actions;
+export const { select, setBoards } = contentSlice.actions;
 
 export default contentSlice.reducer;

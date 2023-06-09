@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import MenuOptions from '../component/MenuOptions';
 import { useSelector } from 'react-redux';
 
 
 const LateralNavbar = () => {
 	const [open, setOpen] = useState(false);
-	const { name } = useSelector(state => state.content.currentBoard)
+	const name = useSelector(state => state.content?.currentBoard?.name)
+	const lateralMenuRef = useRef(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (lateralMenuRef.current && !lateralMenuRef.current.contains(event.target)) {
+				setOpen(false);
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
 	return (
 		<>
 			{open
-				? <div className="lateral-menu lateral-menu-open">
+				? <div className="lateral-menu lateral-menu-open" ref={lateralMenuRef}>
 					<div className="inner-lateral-menu-header">
 						<img src={process.env.PUBLIC_URL + '/assets/logo-mobile.svg'} alt="Logo" />
 						<div className="project-name-wrapper">

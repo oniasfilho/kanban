@@ -48,6 +48,8 @@
   --text-color: white;
   --secondary-color: #20212C;
 	--navbar-border: rgba(148, 147, 147, 0.502);
+	--task-card-background: #9797972d;
+	--box-shadow: 0px 4px 8px 0px rgba(151, 151, 151, 0.6);
 }
 
 // dark-theme related
@@ -75,6 +77,7 @@ $navbar-closed-border: 25px;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Plus Jakarta Sans', sans-serif;
+	// height: fit-content;
 }
 
 .navbar-wrapper {
@@ -144,9 +147,16 @@ $navbar-closed-border: 25px;
 
 .home-wrapper {
 	display: grid;
-	height: calc(100vh - 64px);
 	background-color: var(--secondary-color);
 	margin-top: 64px;
+	max-height: min-content;
+	width: fit-content;
+}
+
+.empty-board-wrapper {
+	display: grid;
+	min-width: 100vw;
+	height: calc(100vh - 64px);
 }
 
 .empty-board-message {
@@ -371,14 +381,21 @@ $navbar-closed-border: 25px;
 }
 
 .columns-wrapper {
-	// background-color: rgb(211, 122, 122);
+	display: grid;
+	grid-auto-flow: column;
+	overflow-y: auto;
+  min-height: calc(100vh - 64px);
+	justify-content: start;
+	min-width: 100vw;
 }
 
 .single-column {
 	color: var(--text-color);
-	height: calc(100vh - $navbar-height);
+	// height: calc(100vh - $navbar-height);
 	display: grid;
 	grid-template-rows: 63px auto;
+	min-width: 280px;
+	margin-right: 24px;
 }
 	
 .column-header-wrapper {
@@ -410,12 +427,13 @@ $navbar-closed-border: 25px;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	background-color: $task-card-background;
+	background-color: var(--task-card-background);
 	width: 280px;
 	height: 107px;
 	border-radius: 8px;
 	padding: 0px 16px;
 	gap: 14px;
+	box-shadow: var(--box-shadow);
 }
 
 .task-title {
@@ -425,6 +443,10 @@ $navbar-closed-border: 25px;
 .subtasks-status {
 	@include bodyM;
 	color: $secondary-text-color-dark;
+}
+
+.layout {
+  overflow-x: hidden;
 }
 
 // tablet layout
@@ -466,7 +488,7 @@ $navbar-closed-border: 25px;
 	}
 	
 	.lateral-menu-open {
-		position: absolute;
+		position: fixed;
 		background-color: var(--background-color);
 		width: 261px;
 		height: 100vh;
@@ -477,7 +499,7 @@ $navbar-closed-border: 25px;
 	}
 
 	.lateral-menu-closed {
-		position: absolute;
+		position: fixed;
 		background-color: $primary-color-dark;
 		width: 56px;
 		height: 48px;
@@ -564,6 +586,7 @@ $navbar-closed-border: 25px;
 	.lateral-navbar-lower-section{
 		display: flex;
 		justify-content: flex-start;
+		margin-top: 30px;
 		padding-left: 31px;
 		gap: 26px;
 		cursor: pointer;
