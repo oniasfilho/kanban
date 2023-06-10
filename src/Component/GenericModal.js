@@ -36,7 +36,12 @@ const GenericModal = ({ modalExpanded, setModalExpanded, localTask, setLocalTask
 		<div className='generic-modal-wrapper' onClick={handleOutsideClick}>
 			<div className='generic-modal'>
 				<div className="task-view-title">
-					{localTask.title}
+					<p className="task-title">{localTask.title}</p>
+					<svg className="edit-task-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10">
+						<circle cx="5" cy="1" r="1.100" fill="#828FA3" />
+						<circle cx="5" cy="5" r="1.100" fill="#828FA3" />
+						<circle cx="5" cy="9" r="1.100" fill="#828FA3" />
+					</svg>
 				</div>
 				{localTask.description &&
 					<div className="task-view-description">

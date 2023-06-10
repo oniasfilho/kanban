@@ -236,9 +236,31 @@ $navbar-closed-border: 25px;
 }
 
 .task-view-title {
-	@include headingM;
-	color: var(--text-color);
+  @include headingM;
+  color: var(--text-color);
+  position: relative;
 }
+
+.task-title {
+	padding-right: 10px;
+}
+
+.edit-task-svg {
+  position: absolute;
+	cursor: pointer;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+	width: 20px; /* Set the width to 20 pixels */
+  height: 20px; /* Let the height adjust automatically */
+}
+
+.edit-task-svg svg circle {
+  display: block;
+  width: 20px;
+  height: 22px;
+}
+
 
 .task-view-description {
 	margin-top: 35px;
@@ -301,6 +323,7 @@ $navbar-closed-border: 25px;
   cursor: pointer;
 }
 
+
 .current-status-dropdown:active,
 .current-status-dropdown:focus-visible,
 .current-status-dropdown:focus,
@@ -326,6 +349,8 @@ input {
 
 .current-status-dropdown-container {
   position: relative;
+	width: 100%; /* Adjust the width as needed */
+  // max-width: 200px; /* Set a maximum width to prevent overflow */
 }
 
 .current-status-arrow {
