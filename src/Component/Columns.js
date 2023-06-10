@@ -10,7 +10,7 @@ const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
 	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
 	const [modalExpanded, setModalExpanded] = useState(false);
-	const [testTask, setTestTask] = useState(null);
+	const [localTask, setLocalTask] = useState(null);
 	const [updateBoard] = useUpdateBoardMutation();
 
 	useEffect(() => {
@@ -50,20 +50,21 @@ const Columns = () => {
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className="columns-wrapper">
-				{localColumns.map((column) => (
+				{localColumns.map((column, index) => (
 					<Column
 						key={column.columnId}
 						column={column}
 						setModalExpanded={setModalExpanded}
-						setTestTask={setTestTask}
+						setTestTask={setLocalTask}
 						modalExpanded={modalExpanded}
+						index={index}
 					/>
 				))}
 				<GenericModal
 					modalExpanded={modalExpanded}
 					setModalExpanded={setModalExpanded}
-					testTask={testTask}
-					setTestTask={setTestTask}
+					localTask={localTask}
+					setLocalTask={setLocalTask}
 					updateBoard={updateBoard}
 					currentBoard={currentBoard}
 				/>

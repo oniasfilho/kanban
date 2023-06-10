@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const GenericModal = ({ modalExpanded, setModalExpanded, testTask, setTestTask, updateBoard, currentBoard }) => {
+const GenericModal = ({ modalExpanded, setModalExpanded, localTask, setLocalTask, updateBoard, currentBoard }) => {
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const handleOutsideClick = (e) => {
 		if (e.target.closest('.generic-modal') === null) {
@@ -10,19 +10,19 @@ const GenericModal = ({ modalExpanded, setModalExpanded, testTask, setTestTask, 
 
 	const handleSubtaskChange = (subtask) => {
 		const updatedTask = {
-			...testTask,
-			subtasks: testTask.subtasks.map((prevSubtask) =>
+			...localTask,
+			subtasks: localTask.subtasks.map((prevSubtask) =>
 				prevSubtask.subTaskId === subtask.subTaskId
 					? { ...prevSubtask, isCompleted: !prevSubtask.isCompleted }
 					: prevSubtask
 			),
 		};
-		setTestTask(updatedTask);
+		setLocalTask(updatedTask);
 
 		let updatedCurrentBoard = JSON.parse(JSON.stringify(currentBoard));
 		updatedCurrentBoard.columns.forEach(column => {
 			column.tasks.forEach(task => {
-				if (task.taskId === testTask.taskId) {
+				if (task.taskId === localTask.taskId) {
 					task.subtasks = updatedTask.subtasks;
 				}
 			})
@@ -30,24 +30,27 @@ const GenericModal = ({ modalExpanded, setModalExpanded, testTask, setTestTask, 
 		updateBoard(updatedCurrentBoard);
 	};
 
-	if (!modalExpanded || testTask == null) return null;
+	if (!modalExpanded || localTask == null) return null;
 
 	return (
 		<div className='generic-modal-wrapper' onClick={handleOutsideClick}>
 			<div className='generic-modal'>
 				<div className="task-view-title">
-					{testTask.title}
+					{localTask.title}
 				</div>
-				{testTask.description &&
+				{localTask.description &&
 					<div className="task-view-description">
-						{testTask.description}
+						{localTask.description}
 					</div>}
 				<div className="task-view-subtasks">
-					<div className="subtasks-header">
-						{`Subtasks (${testTask.subtasks.reduce((count, subtasks) => count + (subtasks.isCompleted ? 1 : 0), 0)} of ${testTask.subtasks.length})`}
-					</div>
+					{localTask.subtasks.length === 0
+						? null
+						: <div className="subtasks-header">
+							{`Subtasks (${localTask.subtasks.reduce((count, subtasks) => count + (subtasks.isCompleted ? 1 : 0), 0)} of ${localTask.subtasks.length})`}
+						</div>
+					}
 					<div className="subtasks-items-wrapper">
-						{testTask.subtasks.map(subtask => (
+						{localTask.subtasks.map(subtask => (
 							<div key={subtask.subTaskId} className="subtask-item">
 								<div className="checkbox-wrapper">
 									<input

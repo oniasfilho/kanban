@@ -67,6 +67,7 @@ $deep-red: #EA5555;
 $ligth-red: #FF9898;
 $todo-color: #49C4E5;
 $doing-color: #8471F2;
+$done-color: #67E2AE;
 
 $navbar-height: 64px;
 $navbar-border: 10px;
@@ -539,8 +540,20 @@ input {
 	width: 15px;
 	height: 15px;
 	border-radius: 50%;
-	background-color: $todo-color;
 	margin-left: 16px;
+	background-color: $todo-color;
+}
+
+.column-circle-0 {
+	background-color: $todo-color;
+}
+
+.column-circle-1 {
+	background-color: $doing-color;
+}
+
+.column-circle-2 {
+	background-color: $done-color;
 }
 
 .column-items {

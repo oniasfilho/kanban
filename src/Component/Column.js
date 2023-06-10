@@ -2,7 +2,7 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '../helpers/StrictModeDroppable';
 
-const Column = ({ column, setModalExpanded, setTestTask, modalExpanded }) => {
+const Column = ({ column, setModalExpanded, setTestTask, modalExpanded, index }) => {
 	const handleClick = (each) => {
 		setTestTask(each);
 		setModalExpanded(!modalExpanded);
@@ -11,7 +11,7 @@ const Column = ({ column, setModalExpanded, setTestTask, modalExpanded }) => {
 	return (
 		<div className="single-column">
 			<div className="column-header-wrapper">
-				<div className="todo-circle" />
+				<div className={`todo-circle column-circle-${index}`} />
 				{column.name} ({column.tasks.length})
 			</div>
 			<StrictModeDroppable droppableId={column.columnId}>
@@ -32,14 +32,16 @@ const Column = ({ column, setModalExpanded, setTestTask, modalExpanded }) => {
 										onClick={() => handleClick(each)}
 									>
 										<p className="task-title">{each.title}</p>
-										<p className="subtasks-status">
-											{each.subtasks.reduce(
-												(count, subtask) =>
-													count + (subtask.isCompleted ? 1 : 0),
-												0
-											)}{' '}
-											of {each.subtasks.length} subtasks
-										</p>
+										{each.subtasks.length === 0
+											? null
+											: <p className="subtasks-status">
+												{each.subtasks.reduce(
+													(count, subtask) =>
+														count + (subtask.isCompleted ? 1 : 0),
+													0
+												)}{' '}
+												of {each.subtasks.length} subtasks
+											</p>}
 									</div>
 								)}
 							</Draggable>

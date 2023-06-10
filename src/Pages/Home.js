@@ -22,8 +22,10 @@ const Home = () => {
 			dispatch(setBoards(data))
 		} else {
 			if (!isLoading && !isError && data) {
-				dispatch(select(data[0]));
 				dispatch(setBoards(data));
+			}
+			if (!isLoading && !isError && data && currentBoard === null) {
+				dispatch(select(data[0]));
 			}
 		}
 	}, [data, currentBoard, dispatch, isError, isLoading])
