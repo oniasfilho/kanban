@@ -4,6 +4,7 @@ import { setGenericModal } from '../features/content/contentSlice';
 import TaskViewModal from './TaskViewModal';
 import TaskEditModal from './TaskEditModal';
 import TaskRelatedModal from './TaskRelatedModal';
+import BoardRelatedModal from './BoardRelatedModal';
 
 const GenericModal = () => {
 
@@ -24,7 +25,7 @@ const GenericModal = () => {
 					<TaskViewModal />
 				}
 				<TaskRelatedModal />
-				{/* <TaskEditModal /> */}
+				<BoardRelatedModal />
 			</div>
 		</div>
 	);

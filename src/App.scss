@@ -243,7 +243,7 @@ $navbar-closed-border: 25px;
 	grid-template-rows: 50px auto auto;
 }
 
-.task-edit-wrapper {
+.task-edit-wrapper, .board-edit-wrapper {
 	color: var(--text-color);
 	display: grid;
 	grid-template-rows: 15px auto auto auto auto 64px;
@@ -259,7 +259,7 @@ $navbar-closed-border: 25px;
 		min-height: 40px;
 		padding: 5px 16px;
   }
-	.task-subtasks-items-wrapper {
+	.task-subtasks-items-wrapper , .board-subtasks-items-wrapper {
 		display:grid;
 		gap: 13px;
 	}
@@ -284,6 +284,15 @@ $navbar-closed-border: 25px;
 		background: $primary-color-dark;
 		color: white;
 	}
+
+	.update-board-buttom-wrapper button{
+		background: $primary-color-dark;
+		color: white;
+	}
+}
+
+.board-edit-wrapper {
+	grid-template-rows: 15px auto auto 64px;
 }
 
 .task-description-textarea {
@@ -296,16 +305,16 @@ $navbar-closed-border: 25px;
 	
 }
 
-.task-edit-modal-title {
+.task-edit-modal-title, .board-edit-modal-title {
 	@include headingM;
 }
 
-.task-title-input, .task-description-textarea{
+.task-title-input, .task-description-textarea, .board-title-input{
 	width: 100%;
 	resize: none;
 }
 
-.task-subtasks-item {
+.task-subtasks-item, .board-subtasks-item {
 	display: grid;
 	grid-template-columns: 0.9fr 0.1fr;
 	align-items: center;
@@ -372,6 +381,8 @@ $navbar-closed-border: 25px;
 	color: $secondary-text-color-dark;
 	text-decoration: line-through;
 }
+
+
 
 .checkbox-wrapper {
 	display: flex;

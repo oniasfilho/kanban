@@ -6,6 +6,7 @@ const initialState = {
 	currentTask: null,
 	modalType: null,
 	isGenericModalExpanded: false,
+	isLateralMenuExpanded: false,
 	status: "idle"
 }
 
@@ -27,10 +28,13 @@ const contentSlice = createSlice({
 		},
 		setGenericModal: (state, action) => {
 			state.isGenericModalExpanded = action.payload;
+		},
+		setLateralMenu: (state, action) => {
+			state.isLateralMenuExpanded = action.payload;
 		}
 	}
 })
 
-export const { select, setBoards, setCurrentTask, setModalType, setGenericModal } = contentSlice.actions;
+export const { select, setBoards, setCurrentTask, setModalType, setGenericModal, setLateralMenu } = contentSlice.actions;
 
 export default contentSlice.reducer;

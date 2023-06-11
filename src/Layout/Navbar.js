@@ -1,10 +1,18 @@
 import React from 'react'
 import NavbarBoardDropdown from '../component/NavbarBoardDropdown'
 import AddButton from '../component/AddButton'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentTask, setModalType, setGenericModal } from '../features/content/contentSlice'
 
 const Navbar = () => {
 	const name = useSelector(state => state.content.currentBoard?.name)
+	const dispatch = useDispatch();
+	const handleEditBoardClick = () => {
+		console.log("chegou em handleEditBoardClick")
+		dispatch(setCurrentTask(null));
+		dispatch(setModalType("BOARD-EDIT"));
+		dispatch(setGenericModal(true));
+	}
 
 	return (
 		<div className='navbar-wrapper'>
@@ -22,7 +30,12 @@ const Navbar = () => {
 			</div>
 			<div className="navbar-right-section">
 				<AddButton />
-				<img src={process.env.PUBLIC_URL + '/assets/icon-vertical-ellipsis.svg'} alt="Options" />
+				<img
+					src={process.env.PUBLIC_URL + '/assets/icon-vertical-ellipsis.svg'}
+					alt="Options"
+					onClick={handleEditBoardClick}
+					style={{ cursor: "pointer" }}
+				/>
 			</div>
 		</div>
 	)
