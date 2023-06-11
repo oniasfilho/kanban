@@ -2,10 +2,11 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '../helpers/StrictModeDroppable';
 
-const Column = ({ column, setModalExpanded, setLocalTask, modalExpanded, index }) => {
-	const handleClick = (each) => {
+const Column = ({ setModalType, column, setModalExpanded, setLocalTask, modalExpanded, index }) => {
+	const handleTaskClick = (each) => {
 		setLocalTask(each);
 		setModalExpanded(!modalExpanded);
+		setModalType("TASK-VIEW");
 	};
 
 	return (
@@ -29,7 +30,7 @@ const Column = ({ column, setModalExpanded, setLocalTask, modalExpanded, index }
 										ref={provided.innerRef}
 										{...provided.draggableProps}
 										{...provided.dragHandleProps}
-										onClick={() => handleClick(each)}
+										onClick={() => handleTaskClick(each)}
 									>
 										<p className="task-title">{each.title}</p>
 										{each.subtasks.length === 0

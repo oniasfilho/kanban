@@ -8,6 +8,7 @@ import GenericModal from './GenericModal';
 
 const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
+	const [modalType, setModalType] = useState(null);
 	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
 	const [modalExpanded, setModalExpanded] = useState(false);
 	const [localTask, setLocalTask] = useState(null);
@@ -54,6 +55,7 @@ const Columns = () => {
 					<Column
 						key={column.columnId}
 						column={column}
+						setModalType={setModalType}
 						setModalExpanded={setModalExpanded}
 						setLocalTask={setLocalTask}
 						modalExpanded={modalExpanded}
@@ -62,6 +64,7 @@ const Columns = () => {
 				))}
 				<GenericModal
 					modalExpanded={modalExpanded}
+					modalType={modalType}
 					setModalExpanded={setModalExpanded}
 					localTask={localTask}
 					setLocalTask={setLocalTask}
