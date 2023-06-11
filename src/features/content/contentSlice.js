@@ -5,6 +5,7 @@ const initialState = {
 	currentBoard: null,
 	currentTask: null,
 	modalType: null,
+	isGenericModalExpanded: false,
 	status: "idle"
 }
 
@@ -23,10 +24,13 @@ const contentSlice = createSlice({
 		},
 		setModalType: (state, action) => {
 			state.modalType = action.payload;
+		},
+		setGenericModal: (state, action) => {
+			state.isGenericModalExpanded = action.payload;
 		}
 	}
 })
 
-export const { select, setBoards, setCurrentTask, setModalType } = contentSlice.actions;
+export const { select, setBoards, setCurrentTask, setModalType, setGenericModal } = contentSlice.actions;
 
 export default contentSlice.reducer;

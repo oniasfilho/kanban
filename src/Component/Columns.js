@@ -2,15 +2,15 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import { useUpdateBoardMutation } from '../features/api/apiSlice';
+
 // import StrictModeDroppable from '../helpers/StrictModeDroppable';
 import Column from './Column';
 import GenericModal from './GenericModal';
 
 const Columns = () => {
 	const { currentBoard } = useSelector(state => state.content);
-	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
-	const [modalExpanded, setModalExpanded] = useState(false);
 	const [updateBoard] = useUpdateBoardMutation();
+	const [localColumns, setLocalColumns] = useState(currentBoard.columns);
 
 	useEffect(() => {
 		setLocalColumns(currentBoard?.columns)
@@ -53,17 +53,10 @@ const Columns = () => {
 					<Column
 						key={column.columnId}
 						column={column}
-						setModalExpanded={setModalExpanded}
-						modalExpanded={modalExpanded}
 						index={index}
 					/>
 				))}
-				<GenericModal
-					modalExpanded={modalExpanded}
-					setModalExpanded={setModalExpanded}
-					updateBoard={updateBoard}
-					currentBoard={currentBoard}
-				/>
+				<GenericModal />
 			</div>
 		</DragDropContext>
 	);

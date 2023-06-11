@@ -1,15 +1,17 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '../helpers/StrictModeDroppable';
-import { useDispatch } from 'react-redux';
-import { setCurrentTask, setModalType } from '../features/content/contentSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentTask, setModalType, setGenericModal } from '../features/content/contentSlice';
 
-const Column = ({ column, setModalExpanded, modalExpanded, index }) => {
+const Column = ({ column, index }) => {
 	const dispatch = useDispatch();
+	const { isGenericModalExpanded } = useSelector(state => state.content);
+
 	const handleTaskClick = (each) => {
 		dispatch(setCurrentTask(each));
 		dispatch(setModalType("TASK-VIEW"));
-		setModalExpanded(!modalExpanded);
+		dispatch(setGenericModal(!isGenericModalExpanded));
 	};
 
 	return (

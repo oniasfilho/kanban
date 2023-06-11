@@ -1,35 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGenericModal } from '../features/content/contentSlice';
 import TaskViewModal from './TaskViewModal';
 import TaskEditModal from './TaskEditModal';
 
-const GenericModal = ({
-	modalExpanded,
-	setModalExpanded,
-	localTask,
-	setLocalTask,
-	updateBoard,
-	currentBoard
-}) => {
-	const currentTask = useSelector(state => state.content.currentTask);
+const GenericModal = () => {
+
+	const dispatch = useDispatch();
+	const { currentTask, isGenericModalExpanded } = useSelector(state => state.content);
 	const handleOutsideClick = (e) => {
 		if (e.target.closest('.generic-modal') === null) {
-			setModalExpanded(!modalExpanded);
+			dispatch(setGenericModal(!isGenericModalExpanded));
 		}
 	};
 
-	if (!modalExpanded || currentTask == null) return null;
+	if (!isGenericModalExpanded || currentTask == null) return null;
 
 	return (
 		<div className='generic-modal-wrapper' onClick={handleOutsideClick}>
 			<div className='generic-modal'>
-				<TaskViewModal
-					updateBoard={updateBoard}
-					currentBoard={currentBoard}
-				/>
-				<TaskEditModal
-
-				/>
+				<TaskViewModal />
+				<TaskEditModal />
 			</div>
 		</div>
 	);

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useUpdateBoardMutation } from '../features/api/apiSlice';
 import { setCurrentTask, setModalType } from '../features/content/contentSlice';
 
-const TaskViewModal = ({ updateBoard, currentBoard }) => {
+const TaskViewModal = () => {
 	const dispatch = useDispatch();
-	const { modalType, currentTask } = useSelector(state => state.content)
+	const [updateBoard] = useUpdateBoardMutation();
+	const { modalType, currentTask, currentBoard } = useSelector(state => state.content)
 
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 
