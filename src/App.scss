@@ -228,11 +228,86 @@ $navbar-closed-border: 25px;
 	@include bodyL;
 	border-radius: $navbar-border;
 	width: 343px;
+	min-height: fit-content;
 	padding: 30px 24px;
 	height: fit-content;
   background-color: var(--background-color);
+}
+
+.task-view-wrapper{
 	display: grid;
 	grid-template-rows: 50px auto auto;
+}
+
+.task-edit-wrapper {
+	color: var(--text-color);
+	display: grid;
+	grid-template-rows: 15px auto auto auto auto 64px;
+	grid-template-columns: 100%;
+	gap: 27px;
+	input,
+  textarea {
+		color: var(--text-color);
+    border: 0.5px solid var(--task-card-background);
+		border-radius: $navbar-border;
+    outline: none;
+    background-color: transparent;
+		min-height: 40px;
+		padding: 5px 16px;
+  }
+	.task-subtasks-items-wrapper {
+		display:grid;
+		gap: 13px;
+	}
+	& > * {
+		display: flex;
+		flex-direction: column;
+	}
+
+	button {
+		border: none;
+		margin: 0;
+		padding: 8px 16px;
+		width: 100%;
+		transform: translateY(-15%);
+		border-radius: 30px;
+		color: $primary-color-dark;
+		background: white;
+		transition: background-color 0.3s ease;
+	}
+
+	.update-task-buttom-wrapper button{
+		background: $primary-color-dark;
+		color: white;
+	}
+}
+
+.task-description-textarea {
+	height: 112px;
+}
+
+.add-new-subtask-button-wrapper {
+	display:flex;
+	margin-top: 13px;
+	
+}
+
+.task-edit-modal-title {
+	@include headingM;
+}
+
+.task-title-input, .task-description-textarea{
+	width: 100%;
+	resize: none;
+}
+
+.task-subtasks-item {
+	display: grid;
+	grid-template-columns: 0.9fr 0.1fr;
+	align-items: center;
+	& :last-child {
+		justify-self: center;
+	}
 }
 
 .task-view-title {
