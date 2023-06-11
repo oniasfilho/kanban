@@ -17,10 +17,6 @@ const Columns = () => {
 		setLocalColumns(currentBoard?.columns)
 	}, [currentBoard])
 
-	// useEffect(() => {
-	// 	setLocalTask()
-	// }, [localColumns])
-
 	const handleDragEnd = useCallback((result) => {
 		const { source, destination } = result;
 		if (!destination) return;
