@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGenericModal } from '../features/content/contentSlice';
 import TaskViewModal from './TaskViewModal';
 import TaskEditModal from './TaskEditModal';
+import TaskRelatedModal from './TaskRelatedModal';
 
 const GenericModal = () => {
 
@@ -14,13 +15,16 @@ const GenericModal = () => {
 		}
 	};
 
-	if (!isGenericModalExpanded || currentTask == null) return null;
+	if (!isGenericModalExpanded) return null;
 
 	return (
 		<div className='generic-modal-wrapper' onClick={handleOutsideClick}>
 			<div className='generic-modal'>
-				<TaskViewModal />
-				<TaskEditModal />
+				{currentTask !== null &&
+					<TaskViewModal />
+				}
+				<TaskRelatedModal />
+				{/* <TaskEditModal /> */}
 			</div>
 		</div>
 	);

@@ -6,8 +6,14 @@ const TaskRelatedModal = () => {
 	const dispatch = useDispatch();
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const { modalType, currentTask, currentBoard } = useSelector(state => state.content);
-	const [tempCurrentTask, setTempCurrentTask] = useState(currentTask);
+	const [tempCurrentTask, setTempCurrentTask] = useState(currentTask || {
+		title: "",
+		description: "",
+		subtasks: [],
 
+	});
+
+	if (modalType !== "TASK-EDIT" && modalType !== "TASK-CREATE") return null;
 	return (
 		<div className='task-edit-wrapper'>
 			<div className="task-edit-modal-title">
@@ -83,7 +89,7 @@ const TaskRelatedModal = () => {
 				</div>
 			</div>
 			<div className="update-task-buttom-wrapper">
-				<button>Update</button>
+				<button>{currentTask === null ? "Create Task" : "Update Task"}</button>
 			</div>
 		</div>
 	)

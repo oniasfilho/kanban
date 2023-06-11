@@ -9,6 +9,7 @@ const Column = ({ column, index }) => {
 	const { isGenericModalExpanded } = useSelector(state => state.content);
 
 	const handleTaskClick = (each) => {
+		console.log("chegou em handleTaskClick")
 		dispatch(setCurrentTask(each));
 		dispatch(setModalType("TASK-VIEW"));
 		dispatch(setGenericModal(!isGenericModalExpanded));

@@ -109,6 +109,10 @@ $navbar-closed-border: 25px;
 	gap: 16px;
 }
 
+.add-button {
+	cursor: pointer;
+}
+
 .nav-dropdown-wrapper {
 	cursor: pointer;
 	color: var(--text-color);

@@ -60,6 +60,10 @@ const TaskViewModal = () => {
 		setIsDropdownExpanded(oldVal => !oldVal)
 		e.target.blur()
 	}
+
+	const handleClickEditButton = () => {
+		dispatch(setModalType("TASK-EDIT"));
+	}
 	return (
 		<>
 			{modalType === "TASK-VIEW" && <>
@@ -71,7 +75,7 @@ const TaskViewModal = () => {
 							className="edit-task-svg"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 10 10"
-							onClick={() => dispatch(setModalType("TASK-EDIT"))}
+							onClick={handleClickEditButton}
 						>
 							<circle cx="5" cy="1" r="1.100" fill="#828FA3" />
 							<circle cx="5" cy="5" r="1.100" fill="#828FA3" />
