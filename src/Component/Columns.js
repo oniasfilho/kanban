@@ -17,6 +17,10 @@ const Columns = () => {
 		setLocalColumns(currentBoard?.columns)
 	}, [currentBoard])
 
+	// useEffect(() => {
+	// 	setLocalTask()
+	// }, [localColumns])
+
 	const handleDragEnd = useCallback((result) => {
 		const { source, destination } = result;
 		if (!destination) return;
@@ -55,7 +59,7 @@ const Columns = () => {
 						key={column.columnId}
 						column={column}
 						setModalExpanded={setModalExpanded}
-						setTestTask={setLocalTask}
+						setLocalTask={setLocalTask}
 						modalExpanded={modalExpanded}
 						index={index}
 					/>

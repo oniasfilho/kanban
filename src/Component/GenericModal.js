@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 
-const GenericModal = ({ modalExpanded, setModalExpanded, localTask, setLocalTask, updateBoard, currentBoard }) => {
+const GenericModal = ({
+	modalExpanded,
+	setModalExpanded,
+	localTask,
+	setLocalTask,
+	updateBoard,
+	currentBoard
+}) => {
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const handleOutsideClick = (e) => {
 		if (e.target.closest('.generic-modal') === null) {
@@ -81,6 +88,41 @@ const GenericModal = ({ modalExpanded, setModalExpanded, localTask, setLocalTask
 									onFocus={() => setIsDropdownExpanded(true)}
 									onBlur={() => setIsDropdownExpanded(false)}
 									onChange={(e) => {
+										const differentColumns = e.target.value !== localTask.status
+										if (differentColumns) {
+											const departingId = localTask.status;
+											const arrivingId = e.target.value;
+											const { taskId } = localTask;
+
+											console.log("departingId: ", departingId)
+
+											let updatedColumns = currentBoard.columns.map(column => {
+												if (column.columnId === departingId) {
+													let updatedColumn = structuredClone(column);
+													console.log("filtrando")
+													updatedColumn.tasks = updatedColumn.tasks.filter(task => task.taskId !== localTask.taskId)
+													return updatedColumn
+												}
+												if (column.columnId === arrivingId) {
+													console.log("adicionando")
+													let updatedColumn = structuredClone(column);
+													updatedColumn.tasks.push(localTask);
+													return updatedColumn;
+												}
+												return column;
+											});
+
+											let updatedBoard = structuredClone(currentBoard);
+											updatedBoard.columns = [...updatedColumns];
+
+											updateBoard(updatedBoard);
+											setLocalTask(oldVal => {
+												return {
+													...oldVal,
+													status: arrivingId
+												}
+											})
+										}
 										setIsDropdownExpanded(oldVal => !oldVal)
 										e.target.blur()
 									}}

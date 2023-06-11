@@ -2,9 +2,9 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { StrictModeDroppable } from '../helpers/StrictModeDroppable';
 
-const Column = ({ column, setModalExpanded, setTestTask, modalExpanded, index }) => {
+const Column = ({ column, setModalExpanded, setLocalTask, modalExpanded, index }) => {
 	const handleClick = (each) => {
-		setTestTask(each);
+		setLocalTask(each);
 		setModalExpanded(!modalExpanded);
 	};
 
