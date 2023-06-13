@@ -1,17 +1,104 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentTask, setModalType } from '../features/content/contentSlice';
+import { useUpdateTaskMutation } from '../features/api/apiSlice';
+import { setCurrentTask, setModalType, setGenericModal } from '../features/content/contentSlice';
+import { generateRandomString } from '../helpers/helperFunctions';
 
 const TaskRelatedModal = () => {
 	const dispatch = useDispatch();
+	const [updateTask, { isLoading, isError, isSuccess, error }] = useUpdateTaskMutation();
 	const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
 	const { modalType, currentTask, currentBoard } = useSelector(state => state.content);
 	const [tempCurrentTask, setTempCurrentTask] = useState(currentTask || {
 		title: "",
 		description: "",
 		subtasks: [],
-
 	});
+	const emptySubtask = {
+		subTaskId: generateRandomString(),
+		title: "",
+		isCompleted: false
+	}
+
+	useEffect(() => {
+		if (isSuccess) {
+			console.log("atualizado com sucesso");
+		}
+
+		if (isError) {
+			console.log("erro ao atualizar")
+			console.err(error)
+		}
+	}, [isSuccess, isError, isLoading, error])
+
+	const handleDeleteSubTask = (subTaskId) => {
+		setTempCurrentTask(oldVal => {
+			let updatedSubtasks = oldVal.subtasks.filter(e => e.subTaskId !== subTaskId)
+			return {
+				...oldVal,
+				subtasks: updatedSubtasks
+			}
+		})
+	}
+
+	const handleChangeTaskInfos = (e) => {
+		const { name, value } = e.target
+		setTempCurrentTask(oldVal => {
+			return {
+				...oldVal,
+				[name]: value
+			}
+		})
+	}
+
+	const handleAddSubtask = () => {
+		setTempCurrentTask(oldVal => {
+			let updatedSubtasks = [...oldVal.subtasks, emptySubtask];
+			return {
+				...oldVal,
+				subtasks: updatedSubtasks
+			}
+		})
+	}
+
+	const alterTask = async (task, boardId) => {
+		await updateTask({ task, boardId });
+	};
+
+	const handleSubmit = async () => {
+		if (currentTask !== null) {
+			let withoutSubTaskIds = structuredClone(tempCurrentTask);
+			withoutSubTaskIds.subtasks = withoutSubTaskIds.subtasks.map(each => {
+				return {
+					title: each.title,
+					isCompleted: each.isCompleted
+				}
+			})
+			await alterTask(withoutSubTaskIds, currentBoard.boardId)
+			dispatch(setGenericModal(false));
+			dispatch(setModalType(null));
+		}
+	}
+
+	const handleSubtaskChange = (e, id) => {
+		const { value } = e.target;
+		setTempCurrentTask(oldVal => {
+			let updatedSubtasks = oldVal.subtasks;
+			updatedSubtasks.forEach(e => {
+				if (e.subTaskId === id) {
+					e.title = value
+				}
+			})
+			return {
+				...oldVal,
+				subtasks: updatedSubtasks
+			}
+		})
+	}
+
+	const handleDelete = () => {
+
+	}
 
 	if (modalType !== "TASK-EDIT" && modalType !== "TASK-CREATE") return null;
 	return (
@@ -25,9 +112,11 @@ const TaskRelatedModal = () => {
 				</div>
 				<div className="task-title-input-wrapper">
 					<input
+						name="title"
 						className='task-title-input'
 						type='text'
 						value={tempCurrentTask.title}
+						onChange={handleChangeTaskInfos}
 					/>
 				</div>
 			</div>
@@ -37,21 +126,33 @@ const TaskRelatedModal = () => {
 				</div>
 				<div className="task-description-textarea-wrapper">
 					<textarea
+						name="description"
 						className="task-description-textarea"
 						value={tempCurrentTask.description}
 						placeholder="e.g Contact marketing to deliver latest feature's details."
+						onChange={handleChangeTaskInfos}
 					/>
 				</div>
 			</div>
 			<div className="task-subtasks-wrapper">
 				<div className="task-subtasks-label">
-					Substasks
+					Subtasks
 				</div>
 				<div className="task-subtasks-items-wrapper">
 					{tempCurrentTask.subtasks.map(subtask => (
 						<div className="task-subtasks-item">
-							<input type="text" className="edit-subtask-item" value={subtask.title} />
-							<svg width="15" height="15" xmlns="http://www.w3.org/2000/svg">
+							<input
+								type="text"
+								className="edit-subtask-item"
+								value={subtask.title}
+								name="title"
+								onChange={(e) => handleSubtaskChange(e, subtask.subTaskId)}
+							/>
+							<svg width="15"
+								height="15"
+								xmlns="http://www.w3.org/2000/svg"
+								onClick={() => handleDeleteSubTask(subtask.subTaskId)}
+							>
 								<g fill="#828FA3" fill-rule="evenodd">
 									<path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" />
 									<path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" />
@@ -61,7 +162,7 @@ const TaskRelatedModal = () => {
 					))}
 				</div>
 				<div className="add-new-subtask-button-wrapper">
-					<button>
+					<button onClick={handleAddSubtask}>
 						<svg className='navbar-add-board-icon add-new-board-icon' xmlns="http://www.w3.org/2000/svg" width="12" height="12">
 							<path d="M7.368 12V7.344H12V4.632H7.368V0H4.656v4.632H0v2.712h4.656V12z" fill="currentcolor" />
 						</svg>
@@ -69,7 +170,7 @@ const TaskRelatedModal = () => {
 					</button>
 				</div>
 			</div>
-			<div className="switch-status-dropdown-wrapper">
+			{/* <div className="switch-status-dropdown-wrapper">
 				<div className="switch-status-dropdown-label">
 					Status
 				</div>
@@ -79,7 +180,7 @@ const TaskRelatedModal = () => {
 						onFocus={() => setIsDropdownExpanded(true)}
 						onBlur={() => setIsDropdownExpanded(false)}
 						defaultValue={tempCurrentTask.status}
-					// onChange={handleStatusChange}
+						onChange={handleStatusChange}
 					>
 						{currentBoard.columns.map(column => (
 							<option
@@ -87,9 +188,20 @@ const TaskRelatedModal = () => {
 						))}
 					</select>
 				</div>
-			</div>
-			<div className="update-task-buttom-wrapper">
-				<button>{currentTask === null ? "Create Task" : "Update Task"}</button>
+			</div> */}
+			<div className="action-buttons-wrapper">
+				<div
+					className="update-task-buttom-wrapper"
+					onClick={handleSubmit}
+				>
+					<button style={{ cursor: "pointer" }}>{currentTask === null ? "Create Task" : "Update Task"}</button>
+				</div>
+				<div
+					className="delete-task-buttom-wrapper"
+					onClick={handleDelete}
+				>
+					<button className='delete-cancel-task-button'>{currentTask === null ? "Cancel" : "Delete Task"}</button>
+				</div>
 			</div>
 		</div>
 	)

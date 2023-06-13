@@ -15,11 +15,20 @@ export const apiSlice = createApi({
 				body: board
 			}),
 			invalidatesTags: ['Boards']
-		})
+		}),
+		updateTask: builder.mutation({
+			query: ({ task, boardId }) => ({
+				url: `/task/${boardId}`,
+				method: 'PUT',
+				body: task
+			}),
+			invalidatesTags: ['Boards']
+		}),
 	})
 })
 
 export const {
 	useGetBoardsQuery,
-	useUpdateBoardMutation
+	useUpdateBoardMutation,
+	useUpdateTaskMutation
 } = apiSlice;

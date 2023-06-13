@@ -246,7 +246,7 @@ $navbar-closed-border: 25px;
 .task-edit-wrapper, .board-edit-wrapper {
 	color: var(--text-color);
 	display: grid;
-	grid-template-rows: 15px auto auto auto auto 64px;
+	grid-template-rows: 15px auto auto auto 64px;
 	grid-template-columns: 100%;
 	gap: 27px;
 	input,
@@ -262,6 +262,9 @@ $navbar-closed-border: 25px;
 	.task-subtasks-items-wrapper , .board-subtasks-items-wrapper {
 		display:grid;
 		gap: 13px;
+		svg {
+			cursor: pointer;
+		}
 	}
 	& > * {
 		display: flex;
@@ -289,7 +292,20 @@ $navbar-closed-border: 25px;
 		background: $primary-color-dark;
 		color: white;
 	}
+	.delete-cancel-task-button {
+		cursor: pointer;
+		background-color: $deep-red;
+		color: white;
+	}
 }
+
+.action-buttons-wrapper {
+	display:grid;
+	gap: 5px;
+}
+
+// style={{ cursor: "pointer", backgroundColor: "#FF9898", color: "white" }}
+
 
 .board-edit-wrapper {
 	grid-template-rows: 15px auto auto 64px;
@@ -302,7 +318,9 @@ $navbar-closed-border: 25px;
 .add-new-subtask-button-wrapper {
 	display:flex;
 	margin-top: 13px;
-	
+	button {
+		cursor: pointer;
+	}
 }
 
 .task-edit-modal-title, .board-edit-modal-title {
