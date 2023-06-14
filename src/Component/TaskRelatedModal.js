@@ -77,6 +77,8 @@ const TaskRelatedModal = () => {
 			await alterTask(withoutSubTaskIds, currentBoard.boardId)
 			dispatch(setGenericModal(false));
 			dispatch(setModalType(null));
+		} else {
+
 		}
 	}
 
@@ -92,6 +94,15 @@ const TaskRelatedModal = () => {
 			return {
 				...oldVal,
 				subtasks: updatedSubtasks
+			}
+		})
+	}
+
+	const handleSetStatus = (e) => {
+		setTempCurrentTask(oldVal => {
+			return {
+				...oldVal,
+				status: e.target.value
 			}
 		})
 	}
@@ -170,25 +181,26 @@ const TaskRelatedModal = () => {
 					</button>
 				</div>
 			</div>
-			{/* <div className="switch-status-dropdown-wrapper">
-				<div className="switch-status-dropdown-label">
-					Status
-				</div>
-				<div className="switch-status-dropdown">
-					<select
-						className="current-status-dropdown"
-						onFocus={() => setIsDropdownExpanded(true)}
-						onBlur={() => setIsDropdownExpanded(false)}
-						defaultValue={tempCurrentTask.status}
-						onChange={handleStatusChange}
-					>
-						{currentBoard.columns.map(column => (
-							<option
-								key={column.columnId} value={column.columnId}>{column.name}</option>
-						))}
-					</select>
-				</div>
-			</div> */}
+			{currentTask === null &&
+				<div className="switch-status-dropdown-wrapper">
+					<div className="switch-status-dropdown-label">
+						Status
+					</div>
+					<div className="switch-status-dropdown">
+						<select
+							className="current-status-dropdown"
+							onFocus={() => setIsDropdownExpanded(true)}
+							onBlur={() => setIsDropdownExpanded(false)}
+							defaultValue={tempCurrentTask.status}
+							onChange={e => handleSetStatus(e)}
+						>
+							{currentBoard.columns.map(column => (
+								<option
+									key={column.columnId} value={column.columnId}>{column.name}</option>
+							))}
+						</select>
+					</div>
+				</div>}
 			<div className="action-buttons-wrapper">
 				<div
 					className="update-task-buttom-wrapper"
@@ -200,7 +212,12 @@ const TaskRelatedModal = () => {
 					className="delete-task-buttom-wrapper"
 					onClick={handleDelete}
 				>
-					<button className='delete-cancel-task-button'>{currentTask === null ? "Cancel" : "Delete Task"}</button>
+					<button
+						className='delete-cancel-task-button'
+						name='create-or-update-task-button'
+					>
+						{currentTask === null ? "Cancel" : "Delete Task"}
+					</button>
 				</div>
 			</div>
 		</div>

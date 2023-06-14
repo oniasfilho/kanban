@@ -5,22 +5,22 @@
 	"proxy": "http://localhost:8080",
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.9.5",
-		"@testing-library/jest-dom": "^5.16.5",
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^13.5.0",
 		"react": "^18.2.0",
+		"react-beautiful-dnd": "^13.1.1",
 		"react-dom": "^18.2.0",
 		"react-redux": "^8.0.7",
 		"react-router-dom": "^6.11.2",
 		"react-scripts": "5.0.1",
 		"sass": "^1.32.12",
-		"web-vitals": "^2.1.4",
-		"react-beautiful-dnd": "^13.1.1"
+		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
+		"test:coverage": "jest --coverage",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
@@ -40,5 +40,15 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@babel/core": "^7.22.5",
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+		"@babel/preset-env": "^7.22.5",
+		"@babel/preset-react": "^7.22.5",
+		"@jest/transform": "^29.5.0",
+		"@testing-library/jest-dom": "^5.16.5",
+		"babel-jest": "^29.5.0",
+		"jest-localstorage-mock": "^2.4.26"
 	}
 }
