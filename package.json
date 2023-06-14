@@ -21,7 +21,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"test:coverage": "jest --coverage",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"lint": "eslint ."
 	},
 	"eslintConfig": {
 		"extends": [
@@ -49,6 +50,12 @@
 		"@jest/transform": "^29.5.0",
 		"@testing-library/jest-dom": "^5.16.5",
 		"babel-jest": "^29.5.0",
+		"eslint": "^8.42.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-jsx-a11y": "^6.7.1",
+		"eslint-plugin-react": "^7.32.2",
+		"eslint-plugin-react-hooks": "^4.6.0",
 		"jest-localstorage-mock": "^2.4.26"
 	}
 }
