@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useUpdateTaskMutation, useCreateTaskMutation, useDeleteTaskMutation } from '../features/api/apiSlice';
-import {
-  // setCurrentTask,
-  setModalType,
-  setGenericModal,
-} from '../features/content/contentSlice';
+import { setModalType, setGenericModal} from '../features/content/contentSlice';
 import generateRandomString from '../helpers/helperFunctions';
 
 function TaskRelatedModal() {

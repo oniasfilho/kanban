@@ -16,6 +16,21 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Boards'],
     }),
+    createBoard: builder.mutation({
+      query: (board) => ({
+        url: '/board',
+        method: 'POST',
+        body: board,
+      }),
+      invalidatesTags: ['Boards'],
+    }),
+    deleteBoard: builder.mutation({
+      query: (id) => ({
+        url: `/board/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Boards'],
+    }),
     updateTask: builder.mutation({
       query: ({ task, boardId }) => ({
         url: `/task/${boardId}`,
@@ -45,6 +60,8 @@ export const apiSlice = createApi({
 export const {
   useGetBoardsQuery,
   useUpdateBoardMutation,
+  useCreateBoardMutation,
+  useDeleteBoardMutation,
   useUpdateTaskMutation,
   useCreateTaskMutation,
   useDeleteTaskMutation,

@@ -28,7 +28,7 @@ function Home() {
         dispatch(select(data[0]));
       }
       if (!isLoading && !isError && data && currentBoard !== null) {
-        dispatch(select(data.find((each) => each.boardId === currentBoard.boardId)));
+        dispatch(select(data.find((each) => each.boardId === currentBoard?.boardId)));
       }
     }
   }, [data, currentBoard, dispatch, isError, isLoading]);
