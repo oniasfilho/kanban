@@ -82,9 +82,18 @@ function TaskViewModal() {
         </div>
         {currentTask.description
 						&& (
-<div className="task-view-description">
-  {currentTask.description}
-</div>
+      <div className="task-description-wrapper-view">
+        <div className="task-description-input-label">Description</div>
+        <div className="task-description-textarea-wrapper">
+          <textarea
+            name="description"
+            className="task-description-textarea"
+            value={currentTask.description}
+            placeholder="e.g Contact marketing to deliver latest feature's details."
+            disabled
+          />
+        </div>
+      </div>
 						)}
         <div className="task-view-subtasks">
           {currentTask.subtasks.length === 0

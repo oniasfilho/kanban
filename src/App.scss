@@ -299,6 +299,19 @@ $navbar-closed-border: 25px;
 	}
 }
 
+.task-description-wrapper-view{
+  color: var(--text-color);
+  input,
+  textarea {
+		color: $dark-gray;
+    border: 0px solid var(--task-card-background);
+		border-radius: $navbar-border;
+    outline: none;
+    background-color: transparent;
+		min-height: 40px;
+		padding: 5px 16px;
+  }
+}
 
 .action-buttons-wrapper {
 	display:grid;

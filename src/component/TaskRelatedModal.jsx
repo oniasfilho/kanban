@@ -223,7 +223,7 @@ function TaskRelatedModal() {
             {currentTask === null ? 'Create Task' : 'Update Task'}
           </button>
         </div>
-        <div className="delete-task-buttom-wrapper" onClick={() => handleDelete(currentTask !== null, currentTask.taskId)}>
+        <div className="delete-task-buttom-wrapper" onClick={() => handleDelete(currentTask !== null, currentTask?.taskId)}>
           <button
             className="delete-cancel-task-button"
             name="create-or-update-task-button"
