@@ -19,7 +19,7 @@
 
 Hi there, thank you for you checking out this project ❤️
 
-I created this app in order to display a little bit more of my full stack development knowledge. The idea is pretty straightfoward: This is a task management app (similar to Trello and Jira), where you can create many boards, in which you can track the status of all those board's related tasks in multiple status columns. All the boards, columns, tasks and subtasks are completely customizable and you can even drag and drop thoses tasks to any column you wish.
+I created this app to showcase my full-stack development skills. The idea is quite straightforward: it's a task management app (similar to Trello and Jira) where you can create multiple boards. Each board allows you to track the status of its associated tasks using multiple status columns. You have complete customization control over boards, columns, tasks, and even subtasks. Additionally, you can easily drag and drop tasks across columns as needed.
 
 ### Functional Requirements for the Kanban App:
 
