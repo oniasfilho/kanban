@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Kanban - Task Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Homepage preview of the app](./public/assets/readme/kanban-screenshots/kanban.jpg)
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The Kanban Project](#the-kanban-project)
+  - [Screenshots](#screenshots)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Technologies](#technologies)
+- [Author](#author)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### The Kanban Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Hi there, thank you for you checking out this project ❤️
 
-### `npm test`
+I created this app in order to display a little bit more of my full stack development knowledge. The idea is pretty straightfoward: This is a task management app (similar to Trello and Jira), where you can create many boards, in which you can track the status of all those board's related tasks in multiple status columns. All the boards, columns, tasks and subtasks are completely customizable and you can even drag and drop thoses tasks to any column you wish.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Functional Requirements for the Kanban App:
 
-### `npm run build`
+1. **Task Management:**
+   - Users should be able to mark subtasks as complete and move tasks between the columns to reflect their progress.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Responsive Layout:**
+   - The app should adapt its layout based on the user's device screen size to provide an optimal viewing experience.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **CRUD Operations:**
+   - Users should be able to perform Create, Read, Update, and Delete operations for both boards and tasks within the app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Form Validations:**
+   - When creating or editing boards and tasks, the app should validate user input to ensure data integrity and provide appropriate error messages for any invalid submissions.
 
-### `npm run eject`
+5. **Hover States:**
+   - Interactive elements on the page, such as buttons and links, should exhibit visual feedback when hovered over by the user.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. **Sidebar Toggle:**
+   - The app should provide functionality to hide or show the board sidebar, allowing users to focus on the main content area when needed.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. **Theme Toggle:**
+   - Users should have the ability to switch between light and dark themes to customize the app's appearance according to their preference.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+8. **Drag and Drop Functionality:**
+   - Users should be able to drag and drop tasks to change their status (column) and re-order them within a column, providing an intuitive and flexible user experience.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+9. **Persistent Data:**
+   - To ensure data persistence, the app should keep track of any changes made by the user, even after refreshing the browser
 
-## Learn More
+10. **Full-Stack Implementation:**
+    - The project should be developed as a full-stack application, leveraging both front-end and back-end technologies to handle data storage, retrieval, and manipulation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Screenshots
 
-### Code Splitting
+![](./public/assets/readme/kanban-screenshots/Screenshot%202023-06-22%20111203.png)
+![](./public/assets/readme/kanban-screenshots/Screenshot%202023-06-22%20111317.png)
+![](./public/assets/readme/kanban-screenshots/Screenshot%202023-06-22%20111342.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### Links
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Back End Repo: [kanban-api](https://github.com/oniasfilho/kanban-api)
+<!-- - Live Site URL: [soon](#) -->
 
-### Making a Progressive Web App
+## My process
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Technologies
 
-### Advanced Configuration
+- HTML5, CSS3 and SASS
+- Flexbox
+- CSS Grid
+- Java
+- Spring Boot
+- MongoDB
+- Mobile-first workflow
+- [React](https://reactjs.org/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<!-- ```html
+<h1>Some HTML code I'm proud of</h1>
+```
+```css
+.proud-of-this-css {
+  color: papayawhip;
+}
+```
+```js
+const proudOfThisFunc = () => {
+  console.log('🎉')
+}
+``` -->
 
-### `npm run build` fails to minify
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- - Website - [Add my website later ](https://www.oniasfilho.io) -->
+- LinkedIn - [@oniasfilho](https://www.linkedin.com/in/oniasfilho/)
