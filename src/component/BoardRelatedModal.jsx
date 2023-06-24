@@ -89,7 +89,6 @@ function BoardRelatedModal() {
   };
 
   const handleBoardDelete = async (boardId) => {
-    dispatch(setCurrentBoard(null));
     await deleteBoard(boardId);
     //TODO: check if boards isn't empty and if it is display a "create board" component
     dispatch(setCurrentBoard(boards[0]));

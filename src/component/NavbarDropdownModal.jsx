@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { switchToDarkTheme, switchToLightTheme } from '../features/layout/layoutSlice';
-import { select } from '../features/content/contentSlice';
+import { select, setNavbarModalExpanded, setModalType, setGenericModal } from '../features/content/contentSlice';
 
 function NavbarDropdownModal({ toggleExpanded, boards }) {
   const theme = useSelector((state) => state.theme.theme);
@@ -23,6 +23,17 @@ function NavbarDropdownModal({ toggleExpanded, boards }) {
     setIsToggled(!isToggled);
   };
 
+  const handleCreateNewBoardClick = () => {
+    console.log("clicou em handleCreateNewBoardClick")
+    toggleExpanded();
+    dispatch(setModalType('BOARD-CREATE'))
+    dispatch(setGenericModal(true))
+  }
+
+  const handleSelect = (board) => {
+    dispatch(select(board));
+    toggleExpanded();
+  }
   return (
     <div className="navbar-modal-wrapper" onClick={handleClick}>
       <div className="navbar-modal">
@@ -36,7 +47,7 @@ function NavbarDropdownModal({ toggleExpanded, boards }) {
             <div
               key={each.name}
               className="navbar-modal-board-option"
-              onClick={() => dispatch(select(each))}
+              onClick={() => handleSelect(each)}
             >
               <svg className="navbar-board-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
                 <path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z" fill="currentcolor" />
@@ -45,7 +56,10 @@ function NavbarDropdownModal({ toggleExpanded, boards }) {
             </div>
           ))}
         </div>
-        <div className="navbar-modal-board-option create-new-board">
+        <div
+          className="navbar-modal-board-option create-new-board"
+          onClick={handleCreateNewBoardClick}
+        >
           <svg className="navbar-board-icon new-board-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
             <path d="M0 2.889A2.889 2.889 0 0 1 2.889 0H13.11A2.889 2.889 0 0 1 16 2.889V13.11A2.888 2.888 0 0 1 13.111 16H2.89A2.889 2.889 0 0 1 0 13.111V2.89Zm1.333 5.555v4.667c0 .859.697 1.556 1.556 1.556h6.889V8.444H1.333Zm8.445-1.333V1.333h-6.89A1.556 1.556 0 0 0 1.334 2.89V7.11h8.445Zm4.889-1.333H11.11v4.444h3.556V5.778Zm0 5.778H11.11v3.11h2a1.556 1.556 0 0 0 1.556-1.555v-1.555Zm0-7.112V2.89a1.555 1.555 0 0 0-1.556-1.556h-2v3.111h3.556Z" fill="currentcolor" />
           </svg>
