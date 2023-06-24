@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useCreateBoardMutation, useUpdateBoardMutation, useDeleteBoardMutation } from '../features/api/apiSlice';
-import { setModalType, setGenericModal, setCurrentBoard } from '../features/content/contentSlice';
+import { setModalType, setGenericModal, setCurrentBoard, select, setStatus } from '../features/content/contentSlice';
 import generateRandomString from '../helpers/helperFunctions';
 
 function BoardRelatedModal() {
@@ -9,7 +9,7 @@ function BoardRelatedModal() {
   const [createBoard] = useCreateBoardMutation();
   const [updateBoard] = useUpdateBoardMutation();
   const [deleteBoard] = useDeleteBoardMutation();
-  const { modalType, currentBoard } = useSelector((state) => state.content);
+  const { modalType, currentBoard, boards } = useSelector((state) => state.content);
   const [isEdit, setIsEdit] = useState(modalType === 'BOARD-EDIT');
   const [isDropdownExpanded, setIsDropdownExpanded] = useState(false);
   const sampleColumn = {
@@ -17,16 +17,16 @@ function BoardRelatedModal() {
     name: '',
     tasks: [],
   };
-  const [ tempCurrentBoard, setTempCurrentBoard] = useState(
+  const [tempCurrentBoard, setTempCurrentBoard] = useState(
     isEdit ? currentBoard : {
-        name: '',
-        columns: [{...sampleColumn}],
+      name: '',
+      columns: [],
     }
   );
 
   const handleBoardChanges = (e) => {
-    const {name, value, id} = e.target;
-    if(name === "name") {
+    const { name, value, id } = e.target;
+    if (name === "name") {
       setTempCurrentBoard(oldVal => {
         return {
           ...oldVal,
@@ -37,7 +37,7 @@ function BoardRelatedModal() {
       setTempCurrentBoard(oldVal => {
         let updatedVal = structuredClone(oldVal);
         updatedVal.columns.forEach(e => {
-          if (e.columnId === id){
+          if (e.columnId === id) {
             e.name = value
           }
         })
@@ -65,7 +65,7 @@ function BoardRelatedModal() {
         ...oldVal,
         columns: [
           ...oldVal.columns,
-          {columnId: generateRandomString(), name: "", tasks:[]}
+          { columnId: generateRandomString(), name: "", tasks: [] }
         ]
       }
     })
@@ -74,6 +74,7 @@ function BoardRelatedModal() {
   const handleSubmit = async () => {
     switch (modalType) {
       case "BOARD-CREATE":
+        dispatch(setStatus("refreshing"));
         await createBoard(tempCurrentBoard);
         break;
       case "BOARD-EDIT":
@@ -87,7 +88,7 @@ function BoardRelatedModal() {
     dispatch(setGenericModal(false));
   };
 
-  const handleBoardDelete = async(boardId) => {
+  const handleBoardDelete = async (boardId) => {
     setCurrentBoard(null);
     await deleteBoard(boardId);
     dispatch(setGenericModal(false));
@@ -128,15 +129,15 @@ function BoardRelatedModal() {
                 value={column?.name}
                 onChange={handleBoardChanges}
               />
-              <svg 
+              <svg
                 name="delete-column"
                 role="button"
-                width="15" 
-                height="15" 
+                width="15"
+                height="15"
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={() => handleColumnDelete(column.columnId)}
               >
-                <g fill="#828FA3" fillRule="evenodd"  role="button">
+                <g fill="#828FA3" fillRule="evenodd" role="button">
                   <path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z" />
                   <path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z" />
                 </g>
@@ -156,18 +157,18 @@ function BoardRelatedModal() {
 
       <section className="action-buttons-wrapper">
         <div className="update-board-buttom-wrapper">
-        <button 
-          onClick={handleSubmit}
-        >{isEdit ? 'Update Board':'Create Board'}</button>
-      </div>
-      <div className="delete-task-buttom-wrapper" onClick={() => handleBoardDelete(tempCurrentBoard.boardId)}>
+          <button
+            onClick={handleSubmit}
+          >{isEdit ? 'Update Board' : 'Create Board'}</button>
+        </div>
+        <div className="delete-task-buttom-wrapper" onClick={() => handleBoardDelete(tempCurrentBoard.boardId)}>
           <button
             className="delete-cancel-task-button"
             name="create-or-update-task-button"
           >
             {isEdit ? 'Delete Board' : 'Cancel'}
           </button>
-      </div>
+        </div>
       </section>
     </div>
   );

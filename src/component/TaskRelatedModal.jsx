@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useUpdateTaskMutation, useCreateTaskMutation, useDeleteTaskMutation } from '../features/api/apiSlice';
-import { setModalType, setGenericModal} from '../features/content/contentSlice';
+import { setModalType, setGenericModal } from '../features/content/contentSlice';
 import generateRandomString from '../helpers/helperFunctions';
 
 function TaskRelatedModal() {
@@ -68,17 +68,17 @@ function TaskRelatedModal() {
   const handleSubmit = async () => {
     console.log("chegou em handleSubmit")
     const withoutSubTaskIds = structuredClone(tempCurrentTask);
-      withoutSubTaskIds.subtasks = withoutSubTaskIds.subtasks.map((each) => ({
-        title: each.title,
-        isCompleted: each.isCompleted,
-      }));
+    withoutSubTaskIds.subtasks = withoutSubTaskIds.subtasks.map((each) => ({
+      title: each.title,
+      isCompleted: each.isCompleted,
+    }));
     if (currentTask !== null) {
       console.log("chegou na atualizacao de task")
       await alterTask(withoutSubTaskIds, currentBoard.boardId);
     } else {
       console.log("chegou na criação de task")
       await newTask(withoutSubTaskIds, currentBoard.boardId)
-    } 
+    }
     dispatch(setGenericModal(false));
     dispatch(setModalType(null));
   };
@@ -107,13 +107,13 @@ function TaskRelatedModal() {
   };
 
   const handleDeleteTask = async (boardId, taskId) => {
-    await deleteTask({boardId, taskId});       
+    await deleteTask({ boardId, taskId });
   }
 
   const handleDelete = async (isDeletion, taskId) => {
     const boardId = currentBoard.boardId;
     console.log("isDeletion ", isDeletion)
-    if(isDeletion) {
+    if (isDeletion) {
       await handleDeleteTask(boardId, taskId)
       dispatch(setGenericModal(false));
       dispatch(setModalType(null));
@@ -121,10 +121,9 @@ function TaskRelatedModal() {
       dispatch(setGenericModal(false));
       dispatch(setModalType(null));
     }
-    
+
   };
 
-  if (modalType !== 'TASK-EDIT' && modalType !== 'TASK-CREATE') return null;
   return (
     <div className="task-edit-wrapper">
       <div className="task-edit-modal-title">

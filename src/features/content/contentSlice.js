@@ -17,6 +17,9 @@ const contentSlice = createSlice({
     select: (state, action) => {
       state.currentBoard = action.payload;
     },
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
     setBoards: (state, action) => {
       state.boards = action.payload;
     },
@@ -39,7 +42,8 @@ const contentSlice = createSlice({
 });
 
 export const {
-  select, setBoards, setCurrentBoard, setCurrentTask, setModalType, setGenericModal, setLateralMenu,
+  select, setBoards, setCurrentBoard, setCurrentTask, setModalType,
+  setGenericModal, setLateralMenu, setStatus
 } = contentSlice.actions;
 
 export default contentSlice.reducer;

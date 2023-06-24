@@ -4,7 +4,7 @@ import EmptyBoard from '../component/EmptyBoard';
 import LateralNavbar from '../component/LateralNavbar';
 import Columns from '../component/Columns';
 import { useGetBoardsQuery } from '../features/api/apiSlice';
-import { select, setBoards } from '../features/content/contentSlice';
+import { select, setBoards, setStatus } from '../features/content/contentSlice';
 
 function Home() {
   const { currentBoard } = useSelector((state) => state.content);
@@ -17,6 +17,9 @@ function Home() {
   } = useGetBoardsQuery();
 
   useEffect(() => {
+    if (!isLoading && !isError && data) {
+      dispatch(setStatus("fullfilled"));
+    }
     if (currentBoard === null && data !== undefined && data !== null) {
       dispatch(select(data[0]));
       dispatch(setBoards(data));
@@ -37,8 +40,8 @@ function Home() {
     <div className="home-wrapper">
       <LateralNavbar />
       {currentBoard?.columns.length > 0
-			  ? <Columns />
-			  : <EmptyBoard />}
+        ? <Columns />
+        : <EmptyBoard />}
     </div>
   );
 }
