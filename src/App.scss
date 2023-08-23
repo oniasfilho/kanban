@@ -752,6 +752,114 @@ input {
   overflow-x: hidden;
 }
 
+.login-signup-component {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+}
+
+.login-signup-box-wrapper {
+  display: grid;
+  background-color: #f1f1f1;
+  width: 464px;
+  height: 480px;
+  padding: 32px 57px;
+}
+
+.email-password-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+}
+
+.login-signup-inputs-wrapper {
+  position: relative;
+  gap: 21px;
+}
+
+.email-password-wrapper {
+  display: grid;
+  gap: 21px;
+}
+
+.user-input {
+  border:none;
+  border: 0.5px #CBD5E1 solid;
+  border-radius: 6px;
+  min-height: 44px;
+  padding-left: 36px;
+}
+
+.email-icon {
+  position: absolute;
+  top: 22.5px;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.password-icon {
+  position: absolute;
+  top: 88.5px;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.remember-me-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.remember-me {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid #CBD5E1;
+}
+
+.input-lower-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  margin-top: 21px;
+}
+
+.login-signup-button {
+  display: flex;
+  min-width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  background-color: #6366F1;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.line-or-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.line-or-line > .line {
+  flex-grow: 1;
+  height: 1px;
+  background: #000;
+}
+
+.line-or-line > span {
+  padding: 0 10px;
+  font-size: 11px;
+}
 // tablet layout
 @media only screen and (min-width: 768px) and (max-width: 2000px) {
   .nav-dropdown-wrapper {
