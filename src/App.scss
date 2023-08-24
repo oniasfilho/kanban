@@ -44,12 +44,15 @@
 }
 
 :root {
+  --empty-board-background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.13) 100%);
+  --input-border-color: rgba(130, 143, 163, 0.25);
   --background-color: #2B2C37;
   --text-color: white;
   --secondary-color: #20212C;
 	--navbar-border: rgba(148, 147, 147, 0.502);
-	--task-card-background: #9797972d;
-	--box-shadow: 0px 4px 8px 0px rgba(151, 151, 151, 0.6);
+	--task-card-background: rgba(130, 143, 163, 0.25);
+	// --task-card-background: #9797972d;
+	--box-shadow: 0px 4px 8px 0px rgba(151, 151, 151, 0.2);
 }
 
 // dark-theme related
@@ -268,7 +271,7 @@ $navbar-closed-border: 25px;
 	input,
   textarea {
 		color: var(--text-color);
-    border: 0.5px solid var(--task-card-background);
+    border: 0.5px solid var(--input-border-color);
 		border-radius: $navbar-border;
     outline: none;
     background-color: transparent;
@@ -690,7 +693,8 @@ input {
 }
 
 .empty-column-wrapper {
-  border-radius: 5px;
+  border-radius: 6px;
+  background: var(--empty-board-background);
   background-color: #2b2c3724;
   margin-top: calc(63px);
   .column-header-wrapper {
@@ -772,6 +776,8 @@ input {
 
 // tablet layout
 @media only screen and (min-width: 768px) and (max-width: 2000px) {
+  //inserir aqui estilo de input
+  
   .nav-dropdown-wrapper {
 		display: none;
 	}
