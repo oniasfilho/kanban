@@ -2,8 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 import { useUpdateBoardMutation } from '../features/api/apiSlice';
-
-// import StrictModeDroppable from '../helpers/StrictModeDroppable';
+import EmptyColumn from './EmptyColumn';
 import Column from './Column';
 import GenericModal from './GenericModal';
 
@@ -21,7 +20,7 @@ function Columns() {
     if (!destination) return;
     if (
       source.droppableId === destination.droppableId
-			&& source.index === destination.index
+      && source.index === destination.index
     ) {
       return;
     }
@@ -56,6 +55,9 @@ function Columns() {
             index={index}
           />
         ))}
+        <div className="empty-column-wrapper">
+          <EmptyColumn />
+        </div>
         <GenericModal />
       </div>
     </DragDropContext>

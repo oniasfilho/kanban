@@ -688,6 +688,24 @@ input {
 	min-width: 280px;
 	margin-right: 24px;
 }
+
+.empty-column-wrapper {
+  border-radius: 5px;
+  background-color: #2b2c3724;
+  margin-top: calc(63px);
+  .column-header-wrapper {
+    text-transform: capitalize;
+  }
+  display:grid;
+  place-content: center;
+}
+
+.new-column-button {
+  display: flex;
+  place-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
 	
 .column-header-wrapper {
 	// background-color: #A8A4FF;

@@ -44,21 +44,21 @@ function Column({ column, index }) {
                   >
                     <p className="task-title">{each.title}</p>
                     {each.subtasks.length === 0
-										  ? null
-										  : (
-  <p className="subtasks-status">
-    {each.subtasks.reduce(
-												  (count, subtask) => count + (subtask.isCompleted ? 1 : 0),
-												  0,
-    )}
-    {' '}
-    of
-    {' '}
-    {each.subtasks.length}
-    {' '}
-    subtasks
-  </p>
-										  )}
+                      ? null
+                      : (
+                        <p className="subtasks-status">
+                          {each.subtasks.reduce(
+                            (count, subtask) => count + (subtask.isCompleted ? 1 : 0),
+                            0,
+                          )}
+                          {' '}
+                          of
+                          {' '}
+                          {each.subtasks.length}
+                          {' '}
+                          subtasks
+                        </p>
+                      )}
                   </div>
                 )}
               </Draggable>
