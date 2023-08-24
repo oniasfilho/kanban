@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Home from './pages/Home';
 import Layout from './component/Layout';
+import Login from './pages/Login';
 
 function App() {
   const theme = useSelector((state) => state.theme.theme);
+  const authenticated = useSelector((state) => state.content.authenticated);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -42,10 +44,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigate to='/home/boards' />} />
+        <Route path='/' element={authenticated ? <Navigate to='/home/boards' /> : <Navigate to='/login' />} />
         <Route path='/home' element={<Layout />}>
           <Route path='boards' element={<Home />} />
         </Route>
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

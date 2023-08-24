@@ -9,6 +9,11 @@ const initialState = {
   isNavbarModalExpanded: false,
   isLateralMenuExpanded: false,
   status: 'idle',
+  authenticated: false,
+  user: {
+    id: null,
+    name: null
+  }
 };
 
 const contentSlice = createSlice({
