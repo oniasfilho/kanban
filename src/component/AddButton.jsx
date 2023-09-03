@@ -4,7 +4,7 @@ import { setModalType, setCurrentTask, setGenericModal } from '../features/conte
 
 function AddButton() {
   const dispatch = useDispatch();
-  const { currentBoard, isGenericModalExpanded } = useSelector((state) => state.content);
+  const { currentBoard, isGenericModalExpanded, boards } = useSelector((state) => state.content);
   const handleNewTaskClick = () => {
     dispatch(setCurrentTask(null));
     dispatch(setModalType('TASK-CREATE'));
@@ -13,7 +13,7 @@ function AddButton() {
   return (
     <div className="add-button-wrapper">
       <button
-        disabled={currentBoard?.columns.length < 1}
+        disabled={!boards?.length > 0}
         className="add-button"
         onClick={handleNewTaskClick}
       >

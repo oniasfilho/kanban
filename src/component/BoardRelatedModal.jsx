@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useCreateBoardMutation, useUpdateBoardMutation, useDeleteBoardMutation } from '../features/api/apiSlice';
 import { setModalType, setGenericModal, setCurrentBoard, select, setStatus } from '../features/content/contentSlice';
@@ -75,6 +75,7 @@ function BoardRelatedModal() {
     switch (modalType) {
       case "BOARD-CREATE":
         dispatch(setStatus("refreshing"));
+        setShouldSwitch(true);
         await createBoard(tempCurrentBoard);
         break;
       case "BOARD-EDIT":
@@ -95,6 +96,17 @@ function BoardRelatedModal() {
     dispatch(setGenericModal(false));
     dispatch(setModalType(null));
   }
+
+  const [shouldSwitch, setShouldSwitch] = useState(false);
+
+  useEffect(() => {
+    console.log("chegou no use effect")
+    console.log("boards: ", boards)
+    console.log("shouldSwitch: ", shouldSwitch)
+    if (boards.length > 0 && shouldSwitch) {
+      setShouldSwitch(false);
+    }
+  }, [boards, shouldSwitch])
 
   if (modalType !== 'BOARD-EDIT' && modalType !== 'BOARD-CREATE') return null;
   return (

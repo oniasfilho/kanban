@@ -9,7 +9,7 @@ const initialState = {
   isNavbarModalExpanded: false,
   isLateralMenuExpanded: false,
   status: 'idle',
-  authenticated: false,
+  authenticated: true,
   user: {
     id: null,
     name: null
